@@ -14,39 +14,61 @@ import '../colors.css';
 
 export default function Type() {
   const url =
-        "https://milhet.alwaysdata.net/sae401/api/types";
-  const [type, setTypes] = useState([]);
+    "https://milhet.alwaysdata.net/sae401/api/types";
+  const [listeType, setTypes] = useState([]);
 
   useEffect(() => {
     const fetchTypes = () => {
-        const fetchOptions = { method: "GET" };
-        fetch(url, fetchOptions)
-            .then((response) => {
-                return response.json();
-            })
-            .then((dataJSON) => {
-                setTypes(dataJSON);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+      const fetchOptions = { method: "GET" };
+      fetch(url, fetchOptions)
+        .then((response) => {
+          return response.json();
+        })
+        .then((dataJSON) => {
+          setTypes(dataJSON);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
 
     fetchTypes();
-}, [url]);
+  }, [url]);
 
   return (
-    <div>
-      <Link key={type.ID_TYPE} to={"/details/" + type.ID_TYPE} style={{ textDecoration: 'none', margin: '10px' }}>
-        <Card style={{ width: '300px' }}>
-          <CardContent>
-            <Typography variant="body2" color="text.secondary" style={{ color: 'var(--primary-color)' }}>
-              geelo
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
+      <Link key={"a"} to={"/details/"} style={{ textDecoration: 'none', margin: '10px' }}>
+        <Card style={{ width: '100px', height: '90px', backgroundColor: 'var(--all-fill)', border: '1px solid var(--all-stroke)' }}>
+          <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography>
+              <img
+                style={{ width: '50px', height: 'auto' }}
+                src={"https://milhet.alwaysdata.net/sae401/all.png"}
+              />
             </Typography>
           </CardContent>
         </Card>
+        <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Tous</p>
       </Link>
+      {listeType.map((type) => {
+        const cardClass = `card-${type.ID_TYPE}`;
+        return (
+          <Link key={type.ID_TYPE} to={"/details/" + type.ID_TYPE} style={{ textDecoration: 'none', margin: '10px' }}>
+            <Card className={cardClass} style={{ width: '100px', height: '90px' }}>
+              <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography>
+                  <img
+                    style={{ width: '50px', height: 'auto' }}
+                    src={"https://milhet.alwaysdata.net/sae401/" + type.ICON}
+                  />
+                </Typography>
+              </CardContent>
+            </Card>
+            <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>{type.NOM}</p>
+          </Link>
+        );
+      })}
     </div>
   );
-  
+
 }

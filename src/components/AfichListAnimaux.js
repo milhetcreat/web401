@@ -47,7 +47,7 @@ export default function AffichListAnimaux(props) {
 
 
     return (
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '100px' }}>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '50px' }}>
             {listeAnimaux.map((animal) => (
                 <Link key={animal.ID_ANIMAL} to={"/details/" + animal.ID_ANIMAL} style={{ textDecoration: 'none', margin: '10px' }}>
                     <Card sx={{ maxWidth: 345, marginBottom: '10px' }}>
