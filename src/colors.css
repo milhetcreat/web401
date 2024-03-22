@@ -1,0 +1,23 @@
+:root {
+
+    /* Types d'Animaux Color */
+
+    --all-fill: #D6C3B7;
+    --all-stroke: #84746A;
+
+    --dog-fill: #FFDCC4;
+    --dog-stroke: #FFB780;
+
+    --cat-fill: #FFD8ED;
+    --cat-stroke: #F8B1DD;
+
+    --bird-fill: #C7E7FF;
+    --bird-stroke: #236488;
+
+    --rabit-fill: #BDEFCC;
+    --rabit-stroke: #30C55D;
+
+    --fish-fill: #EADDFF;
+    --fish-stroke: #6750A4;
+
+  }

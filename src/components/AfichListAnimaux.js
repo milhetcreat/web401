@@ -19,6 +19,7 @@ import FemaleIcon from '@mui/icons-material/Female';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { AlignHorizontalCenter } from "@mui/icons-material";
+import Fab from '@mui/material/Fab';
 
 export default function AffichListAnimaux(props) {
     const url =
@@ -46,18 +47,18 @@ export default function AffichListAnimaux(props) {
 
 
     return (
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop:'100px' }}>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '100px' }}>
             {listeAnimaux.map((animal) => (
                 <Link key={animal.ID_ANIMAL} to={"/details/" + animal.ID_ANIMAL} style={{ textDecoration: 'none', margin: '10px' }}>
-                    <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
+                    <Card sx={{ maxWidth: 345, marginBottom: '10px' }}>
                         <CardHeader
                             avatar={
                                 animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
                             }
                             action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
+                                <Fab size="small" color="primary" aria-label="like">
+                                    <FavoriteIcon />
+                                </Fab>
                             }
                             title={animal.PRENOM}
                             titleTypographyProps={{ variant: 'h6', style: { fontWeight: 'bold' } }}

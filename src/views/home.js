@@ -1,9 +1,13 @@
 import AffichListAnimaux from "../components/AfichListAnimaux";
+import AffichType from '../components/AffichType'
 
 function Home() {
     return (
-        <AffichListAnimaux></AffichListAnimaux>
-      );
-  }
-  
-  export default Home;
+        <div>
+            <AffichType></AffichType>
+            <AffichListAnimaux></AffichListAnimaux>
+        </div>
+    );
+}
+
+export default Home;

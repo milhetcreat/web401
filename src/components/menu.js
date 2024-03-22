@@ -71,8 +71,8 @@ function App() {
                         open={Boolean(anchorEl)}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                        <MenuItem onClick={handleMenuClose}>Mon Espace</MenuItem>
+                        <MenuItem onClick={handleMenuClose}>Se déconnecter</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>

@@ -35,7 +35,7 @@ export default function DetailAnimal() {
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <div>
                         <img
-                            width="100px"
+                            width="400px"
                             src={"https://milhet.alwaysdata.net/sae401/" + animal.PHOTO}
                             alt={animal.title}
                         />
