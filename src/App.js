@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 import Menu from './components/menu'
 import { BrowserRouter as Router, Route, Routes, Link, Switch } from 'react-router-dom';
-import Home from "./pages/home";
+import Home from "./views/home";
 
 
 const App = () => {
