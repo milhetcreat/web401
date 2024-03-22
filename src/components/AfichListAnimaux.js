@@ -46,21 +46,21 @@ export default function AffichListAnimaux(props) {
 
 
     return (
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop:'100px' }}>
             {listeAnimaux.map((animal) => (
-                <Link key={animal.ID_ANIMAL} to={"/detail/" + animal.ID_ANIMAL} style={{ textDecoration: 'none', margin: '10px' }}>
+                <Link key={animal.ID_ANIMAL} to={"/details/" + animal.ID_ANIMAL} style={{ textDecoration: 'none', margin: '10px' }}>
                     <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
                         <CardHeader
-                        avatar={
-                            animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
-                        }
-                        action={
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        }
-                        title={animal.PRENOM}
-                        titleTypographyProps={{ variant: 'h6', style: { fontWeight: 'bold' } }}
+                            avatar={
+                                animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
+                            }
+                            action={
+                                <IconButton aria-label="settings">
+                                    <MoreVertIcon />
+                                </IconButton>
+                            }
+                            title={animal.PRENOM}
+                            titleTypographyProps={{ variant: 'h6', style: { fontWeight: 'bold' } }}
                         />
                         <div style={{ textAlign: 'center' }}>
                             <img
@@ -70,8 +70,11 @@ export default function AffichListAnimaux(props) {
                             />
                         </div>
                         <CardContent>
-                            <Typography variant="body2" color="text.secondary" style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden', WebkitLineClamp: 3 }}>
-                                {animal.DESCRIPTION}
+                            <Typography variant="body2" color="text.secondary" style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden', WebkitLineClamp: 3, fontWeight: '600' }}>
+                                {animal.RACE}, {animal.AGE} {animal.AGE === 1 ? 'an' : 'ans'}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary" style={{ fontStyle: 'italic' }}>
+                                {animal.LOCALISATION}
                             </Typography>
                         </CardContent>
                     </Card>

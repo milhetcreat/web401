@@ -4,45 +4,49 @@ import { useState, useEffect } from "react";
 const apiKey = "e2284567c82bd996404acdf47ee3ff17";
 
 export default function DetailAnimal() {
-  const { idFilm } = useParams();
-  const [film, setFilm] = useState(null);
+    const { idAnimal } = useParams();
+    const [animal, setAnimal] = useState(null);
 
-  useEffect(() => {
-    const fetchFilmDetails = () => {
-      fetch(
-        `https://api.themoviedb.org/3/movie/${idFilm}?api_key=${apiKey}&language=fr-FR`
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setFilm(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching film details:", error);
-        });
-    };
+    useEffect(() => {
+        const fetchAnimalDetails = () => {
+            fetch(
+                `https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}`
+            )
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setAnimal(data);
+                })
+                .catch((error) => {
+                    console.error("Error fetching animal details:", error);
+                });
+        };
 
-    fetchFilmDetails();
-  }, [idFilm]);
+        fetchAnimalDetails();
+    }, [idAnimal]);
 
-  return (
-    <div>
-      <h3>Detail d'un film</h3>
-      {film && (
-        <>
-          <img
-            width="100px"
-            src={"https://image.tmdb.org/t/p/w500/" + film.poster_path}
-            alt={film.title}
-          />
-          <h2>{film.title}</h2>
-          <p>{film.overview}</p>
-        </>
-      )}
-    </div>
-  );
+    return (
+        <div>
+            {animal && (
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div>
+                        <img
+                            width="100px"
+                            src={"https://milhet.alwaysdata.net/sae401/" + animal.PHOTO}
+                            alt={animal.title}
+                        />
+                    </div>
+                    <div>
+                        <h3>{animal.PRENOM}</h3>
+                        <h2>{animal.PRENOM}</h2>
+                        <p>{animal.overview}</p>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 }

@@ -4,6 +4,7 @@ import React from 'react';
 import Menu from './components/menu'
 import { BrowserRouter as Router, Route, Routes, Link, Switch } from 'react-router-dom';
 import Home from "./views/home";
+import DetailAnimal from './views/details-animal';
 
 
 const App = () => {
@@ -13,8 +14,7 @@ const App = () => {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/news" element={<Home />} />
-          {/* Define other routes that you need*/}
+          <Route path="/details/:idAnimal" element={<DetailAnimal />} />
         </Routes>
       </main>
     </Router>
