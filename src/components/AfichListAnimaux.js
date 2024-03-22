@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
+import MaleIcon from '@mui/icons-material/Male';
+import FemaleIcon from '@mui/icons-material/Female';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { AlignHorizontalCenter } from "@mui/icons-material";
@@ -44,22 +46,21 @@ export default function AffichListAnimaux(props) {
 
 
     return (
-        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
             {listeAnimaux.map((animal) => (
                 <Link key={animal.ID_ANIMAL} to={"/detail/" + animal.ID_ANIMAL} style={{ textDecoration: 'none', margin: '10px' }}>
                     <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
                         <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    R
-                                </Avatar>
-                            }
-                            action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            }
-                            title={animal.PRENOM}
+                        avatar={
+                            animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
+                        }
+                        action={
+                            <IconButton aria-label="settings">
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
+                        title={animal.PRENOM}
+                        titleTypographyProps={{ variant: 'h6', style: { fontWeight: 'bold' } }}
                         />
                         <div style={{ textAlign: 'center' }}>
                             <img
