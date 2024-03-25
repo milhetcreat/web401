@@ -15,6 +15,7 @@ import '../colors.css';
 export default function Type() {
   const url =
     "https://milhet.alwaysdata.net/sae401/api/types";
+  let all = 5;
   const [listeType, setTypes] = useState([]);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Type() {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
-      <Link key={"a"} to={"/details/"} style={{ textDecoration: 'none', margin: '10px' }}>
+      <Link to={"/types/" + all + "/animaux"} style={{ textDecoration: 'none', margin: '10px' }}>
         <Card style={{ width: '100px', height: '90px', backgroundColor: 'var(--all-fill)', border: '1px solid var(--all-stroke)' }}>
           <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Typography>
@@ -53,7 +54,7 @@ export default function Type() {
       {listeType.map((type) => {
         const cardClass = `card-${type.ID_TYPE}`;
         return (
-          <Link key={type.ID_TYPE} to={"/details/" + type.ID_TYPE} style={{ textDecoration: 'none', margin: '10px' }}>
+          <Link key={type.ID_TYPE} to={"/types/" + type.ID_TYPE + "/animaux"} style={{ textDecoration: 'none', margin: '10px' }}>
             <Card className={cardClass} style={{ width: '100px', height: '90px' }}>
               <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography>

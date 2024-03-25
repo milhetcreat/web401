@@ -21,11 +21,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { AlignHorizontalCenter } from "@mui/icons-material";
 import Fab from '@mui/material/Fab';
 
-export default function AffichListAnimaux(props) {
-    let idType = props.idType;
-    const url =
-        "https://milhet.alwaysdata.net/sae401/api/animaux/";
-    let url2 = `https://milhet.alwaysdata.net/sae401/api/types/${idType}/animaux`
+export default function AffichListAnimaux() {
+    const url2 ="https://milhet.alwaysdata.net/sae401/api/animaux";
     const [listeAnimaux, setAnimaux] = useState([]);
 
     useEffect(() => {
@@ -36,6 +33,7 @@ export default function AffichListAnimaux(props) {
                     return response.json();
                 })
                 .then((dataJSON) => {
+                    console.log(dataJSON);
                     setAnimaux(dataJSON);
                 })
                 .catch((error) => {

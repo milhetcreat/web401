@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import AllAnimaux from "../components/AllAnimaux";
+import AffichListAnimaux from "../components/AfichListAnimaux";
 import AffichType from '../components/AffichType'
 
 export default function Test() {
@@ -14,7 +14,7 @@ export default function Test() {
     return (
         <div>
             <AffichType></AffichType>
-            <AllAnimaux></AllAnimaux>
+            <AffichListAnimaux idType={idType}></AffichListAnimaux>
         </div>
     );
 }

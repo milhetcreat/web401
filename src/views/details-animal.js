@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const apiKey = "e2284567c82bd996404acdf47ee3ff17";
-
 export default function DetailAnimal() {
     const { idAnimal } = useParams();
     const [animal, setAnimal] = useState(null);
