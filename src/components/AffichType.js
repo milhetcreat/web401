@@ -1,3 +1,4 @@
+import '../colors.css';
 import React, { useState, useEffect } from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -10,7 +11,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import CardContent from '@mui/material/CardContent';
-import '../colors.css';
 
 export default function Type() {
   const url =
