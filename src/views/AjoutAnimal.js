@@ -10,19 +10,48 @@ import Type from '../components/Type';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { alpha, styled } from '@mui/material/styles';
+import FemaleIcon from '@mui/icons-material/Female';
+import MaleIcon from '@mui/icons-material/Male';
+import Button from '@mui/material/Button';
 
 export default function AjoutAnimal() {
 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
-            <Type></Type>
             <Box component="form" sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
+                <Type></Type>
                 <CssTextField label="Nom*" />
-                <CssTextField label="Race*"/>
-                <CssTextField label="Age*" type="number"/>
+                <CssTextField label="Race*" />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px' }}>
+                    <div>
+                        <Card style={{ width: '100px', height: '90px' }}>
+                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'var(--all-fill)' }}>
+                                <MaleIcon style={{ fontSize: 60 }} />
+                            </CardContent>
+                        </Card>
+                        <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Mâle</p>
+                    </div>
+                    <div>
+                        <Card style={{ width: '100px', height: '90px' }}>
+                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'var(--all-fill)' }}>
+                                <FemaleIcon style={{ fontSize: 60 }} />
+                            </CardContent>
+                        </Card>
+                        <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Femmelle</p>
+                    </div>
+                </div>
+                <CssTextField label="Age*" type="number" />
                 <CssTextField label="Description*" multiline rows={4} />
                 <CssTextField label="Spécificité" multiline rows={3} />
+                <div style={{ display: 'flex', gap: '20px' }}>
+                    <Button variant="contained" size="medium">
+                        Medium
+                    </Button>
+                    <Button variant="outlined" size="medium">
+                        Medium
+                    </Button>
+                </div>
             </Box>
         </div>
     );
