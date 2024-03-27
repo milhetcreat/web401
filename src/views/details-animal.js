@@ -61,10 +61,10 @@ export default function DetailAnimal() {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginLeft: '250px', marginRight: '250px' }}>
                         <h3 className="prenom" style={{ fontSize: '65px', marginBottom: '5px', marginTop: '0px', color: 'var(--dog-stroke)' }}>{animal.PRENOM}</h3>
                         <div>
-                            <Fab size="small" aria-label="like" style={{marginRight: '5px', backgroundColor: 'var(--dog-stroke)', color: 'white'}}>
+                            <Fab size="small" aria-label="like" style={{ marginRight: '5px', backgroundColor: 'var(--dog-stroke)', color: 'white' }}>
                                 <FavoriteIcon />
                             </Fab>
-                            <Fab size="small" aria-label="like" style={{ backgroundColor: 'var(--dog-stroke)', color: 'white'}}>
+                            <Fab size="small" aria-label="like" style={{ backgroundColor: 'var(--dog-stroke)', color: 'white' }}>
                                 <ReportIcon />
                             </Fab>
                         </div>
@@ -84,7 +84,12 @@ export default function DetailAnimal() {
                             <p style={{ display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 'bold' }}><LocationOnIcon></LocationOnIcon> {animal.LOCALISATION}</p>
                         </div>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '250px', marginRight: '250px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'start', marginLeft: '250px', marginRight: '250px', marginTop: '50px' }}>
+                        <div style={{ marginLeft: '250px', marginRight: '250px' }}>
+                            <p>{animal.DESCRIPTION}</p>
+                            <p style={{ fontWeight: 'bold' }}> Spécificités</p>
+                            <p>{animal.SPECIFICITE === null ? 'Aucunes' : animal.SPECIFICITE}</p>
+                        </div>
                         <ListItem>
                             <ListItemAvatar>
                                 <Avatar>
@@ -93,11 +98,6 @@ export default function DetailAnimal() {
                             </ListItemAvatar>
                             <ListItemText primary="Photos" secondary="Jan 9, 2014" />
                         </ListItem>
-
-                    </div>
-                    <div style={{ marginLeft: '250px', marginRight: '250px' }}>
-                        <p>{animal.DESCRIPTION}</p>
-
                     </div>
                 </div>
             )}
