@@ -22,27 +22,35 @@
 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+.prenom {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
 .card-0 {
-    background-color: var(--cat-fill) ;
+    background-color: var(--cat-fill);
     border: 1px solid var(--cat-stroke);
 }
 
 .card-1 {
-    background-color: var(--dog-fill) ;
+    background-color: var(--dog-fill);
     border: 1px solid var(--dog-stroke);
 }
 
 .card-2 {
-    background-color: var(--rabit-fill) ;
+    background-color: var(--rabit-fill);
     border: 1px solid var(--rabit-stroke);
 }
 
 .card-3 {
-    background-color: var(--bird-fill) ;
+    background-color: var(--bird-fill);
     border: 1px solid var(--bird-stroke);
 }
 
 .card-4 {
-    background-color: var(--fish-fill) ;
+    background-color: var(--fish-fill);
     border: 1px solid var(--fish-stroke);
 }

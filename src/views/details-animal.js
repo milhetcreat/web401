@@ -18,14 +18,8 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PetsIcon from '@mui/icons-material/Pets';
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import '../colors.css';
 
 export default function DetailAnimal() {
     const { idAnimal } = useParams();
@@ -57,13 +51,13 @@ export default function DetailAnimal() {
         <div>
             {animal && (
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Breadcrumbs aria-label="breadcrumb" style={{marginLeft: '250px', marginTop: '20px', marginBottom: '20px'}}>
+                    <Breadcrumbs aria-label="breadcrumb" style={{ marginLeft: '250px', marginTop: '20px', marginBottom: '20px' }}>
                         <Link underline="hover" color="inherit" href="/">
                             Home
                         </Link>
                         <Typography color="text.primary">{animal.PRENOM}</Typography>
                     </Breadcrumbs>
-                    <div style={{ backgroundColor: 'var(--all-fill)', display: 'flex', gap: '150px', padding: '50px', marginRight: '250px', marginLeft: '250px', justifyContent: 'center', alignItems: 'center', borderRadius: '20px' }}>
+                    <div style={{ backgroundColor: 'var(--dog-fill)', display: 'flex', gap: '150px', padding: '50px', justifyContent: 'center', alignItems: 'center'}}>
                         <div>
                             <img
                                 width="400px"
@@ -71,24 +65,13 @@ export default function DetailAnimal() {
                                 alt={animal.title}
                             />
                         </div>
-                        <div>
-                            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '25px', marginBottom: '20px', gap: '5px' }}>
-                                {animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />}
-                                <h3>{animal.PRENOM}</h3>
-                            </div>
-                            <div>
-                                <Stack
-                                    direction="row"
-                                    divider={<Divider orientation="vertical" flexItem />}
-                                    spacing={3}
-                                >
-                                    <Item style={{ paddingRight: '30px', paddingLeft: '30px' }}><h4>Age</h4> <p>{animal.AGE} {animal.AGE === 1 ? 'an' : 'ans'}</p></Item>
-                                    <Item style={{ paddingRight: '30px', paddingLeft: '30px' }}><h4>Poids</h4> <p>{animal.POIDS} kg</p></Item>
-                                    <Item style={{ paddingRight: '30px', paddingLeft: '30px' }}><h4>Taille</h4> <p>{animal.TAILLE} cm</p></Item>
-                                </Stack>
-                            </div>
-                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><LocationOnIcon></LocationOnIcon><span style={{ fontWeight: 'bold' }}>Localisation : </span> {animal.LOCALISATION}</p>
-                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><PetsIcon></PetsIcon><span style={{ fontWeight: 'bold' }}> Race : </span> {animal.RACE}</p>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <h3 className="prenom" style={{fontSize: '65px', marginBottom: '5px'}}>{animal.PRENOM}</h3>
+
+                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><PetsIcon></PetsIcon> {animal.RACE}</p>
+                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{animal.GENRE === 0 ? (<> <MaleIcon /> Mâle </>) : ( <>  <FemaleIcon /> Femelle </> )}</p>
+                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}> <DateRangeIcon></DateRangeIcon> {animal.AGE} {animal.AGE === 1 ? 'an' : 'ans'}</p>
+                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 'bold' }}><LocationOnIcon></LocationOnIcon> {animal.LOCALISATION}</p>
                         </div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '250px', marginRight: '250px' }}>
@@ -103,6 +86,10 @@ export default function DetailAnimal() {
                         <Fab size="small" color="primary" aria-label="like">
                             <FavoriteIcon />
                         </Fab>
+                    </div>
+                    <div style={{marginLeft: '250px', marginRight: '250px' }}>
+                        <p>{animal.DESCRIPTION}</p>
+
                     </div>
                 </div>
             )}
