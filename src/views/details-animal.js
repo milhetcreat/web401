@@ -74,7 +74,7 @@ export default function DetailAnimal() {
                             <img
                                 width="400px"
                                 src={"https://milhet.alwaysdata.net/sae401/" + animal.PHOTO}
-                                alt={animal.title}
+                                alt={animal.PERNOM}
                             />
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -96,7 +96,7 @@ export default function DetailAnimal() {
                                     <ImageIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+                            <ListItemText primary="Photos" secondary={animal.PRENOM}/>
                         </ListItem>
                     </div>
                 </div>
