@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link, Switch } from 'react-rout
 import Home from "./views/home";
 import DetailAnimal from './views/details-animal';
 import AnimalType from './views/AnimalType';
-
+import AjoutAnimal from './views/AjoutAnimal';
 
 const App = () => {
   return (
@@ -17,6 +17,7 @@ const App = () => {
           <Route path="/types/:idType/animaux" element={<AnimalType />} />
           <Route path="/types/5/animaux" element={<Home />} />
           <Route path="/details/:idAnimal" element={<DetailAnimal />} />
+          <Route path="/ajoutanimal" element={<AjoutAnimal />} />
         </Routes>
       </main>
     </Router>
