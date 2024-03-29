@@ -6,6 +6,7 @@ import Home from "./views/home";
 import DetailAnimal from './views/details-animal';
 import AnimalType from './views/AnimalType';
 import AjoutAnimal from './views/AjoutAnimal';
+import AjoutUser from './views/AjoutUser';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/types/5/animaux" element={<Home />} />
           <Route path="/details/:idAnimal" element={<DetailAnimal />} />
           <Route path="/ajoutanimal" element={<AjoutAnimal />} />
+          <Route path="/ajoutuser" element={<AjoutUser />} />
         </Routes>
       </main>
     </Router>
