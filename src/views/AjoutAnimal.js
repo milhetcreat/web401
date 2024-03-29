@@ -1,5 +1,5 @@
 import '../colors.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Type from '../components/Type';
@@ -14,16 +14,11 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 const AjoutAnimal = () => {
     const [nom, setNom] = useState('');
-    const [type, setType] = useState('');
     const [race, setRace] = useState('');
-    const [genre, setGenre] = useState('');
     const [age, setAge] = useState('');
     const [description, setDescription] = useState('');
     const [specificite, setSpecificite] = useState('');
-
-    const handleGenreSelection = (selectedGenre) => {
-        setGenre(selectedGenre);
-    };
+    const [genre, setGenre] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,20 +38,20 @@ const AjoutAnimal = () => {
                 <CssTextField label="Race*" value={race} onChange={(e) => setRace(e.target.value)} />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px' }}>
                     <div>
-                        <Card style={{ width: '100px', height: '90px' }} onClick={() => handleGenreSelection('Mâle')}>
-                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'var(--all-fill)' }}>
+                        <Card style={{ width: '100px', height: '90px', backgroundColor: genre === 0 ? 'var(--all-stroke)' : 'var(--all-fill)' }} onClick={() => setGenre(0)}>
+                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <MaleIcon style={{ fontSize: 60 }} />
                             </CardContent>
                         </Card>
                         <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Mâle</p>
                     </div>
                     <div>
-                        <Card style={{ width: '100px', height: '90px' }} onClick={() => handleGenreSelection('Femelle')}>
-                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'var(--all-fill)' }}>
+                        <Card style={{ width: '100px', height: '90px', backgroundColor: genre === 1 ? 'var(--all-stroke)' : 'var(--all-fill)' }} onClick={() => setGenre(1)}>
+                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <FemaleIcon style={{ fontSize: 60 }} />
                             </CardContent>
                         </Card>
-                        <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Femmelle</p>
+                        <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Femelle</p>
                     </div>
                 </div>
                 <CssTextField label="Age*" type="number" value={age} onChange={(e) => setAge(e.target.value)} />
@@ -74,6 +69,7 @@ const AjoutAnimal = () => {
         </div>
     );
 }
+
 export default AjoutAnimal;
 
 const CssTextField = styled(TextField)({
