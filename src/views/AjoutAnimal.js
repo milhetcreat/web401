@@ -1,21 +1,16 @@
 import '../colors.css';
 import React, { useState, useEffect } from "react";
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Text from '@mui/material/Typography';
-import { Link } from "react-router-dom";
 import CardContent from '@mui/material/CardContent';
 import Type from '../components/Type';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 export default function AjoutAnimal() {
 
@@ -23,7 +18,7 @@ export default function AjoutAnimal() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
             <Fab size="medium" color="primary" aria-label="like" style={{ backgroundColor: 'var(--all-stroke)' }}>
-                <AddIcon />
+                <CameraAltIcon />
             </Fab>
             <Box component="form" sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                 <Type></Type>
