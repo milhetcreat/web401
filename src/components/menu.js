@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../colors.css';
 import { AppBar, Typography, Toolbar, IconButton, MenuItem, Menu, InputBase, Drawer, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -41,19 +42,19 @@ function App() {
 
     return (
         <div>
-            <AppBar position="static">
+            <AppBar position="static" style={{ backgroundColor: 'var(--all-stroke)' }}>
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleLeftDrawer(true)}>
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                        Material-UI Menu
+                        Your'Pet
                     </Typography>
                     <div style={{ position: 'relative' }}>
                         <div style={{ position: 'absolute', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
                             <SearchIcon />
                         </div>
-                        <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} sx={{ pl: 3 }} />
+                        <InputBase placeholder="Search" inputProps={{ 'aria-label': 'search'}} sx={{ pl: 3 }} style={{color: 'white', marginLeft: '2px'}} />
                     </div>
                     <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenuOpen} color="inherit">
                         <AccountCircle />
