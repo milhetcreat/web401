@@ -12,21 +12,38 @@ import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
-export default function AjoutAnimal() {
+const AjoutAnimal = () => {
+    const [nom, setNom] = useState('');
+    const [type, setType] = useState('');
+    const [race, setRace] = useState('');
+    const [genre, setGenre] = useState('');
+    const [age, setAge] = useState('');
+    const [description, setDescription] = useState('');
+    const [specificite, setSpecificite] = useState('');
 
+    const handleGenreSelection = (selectedGenre) => {
+        setGenre(selectedGenre);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Envoyer les données à votre backend pour les enregistrer dans la base de données
+        const animalData = { nom, race, genre, age, description, specificite };
+        console.log(animalData); // Vous devrez remplacer cette ligne par l'appel à votre API
+    };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
+        <div component="form" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }} onSubmit={handleSubmit}>
             <Fab size="medium" color="primary" aria-label="like" style={{ backgroundColor: 'var(--all-stroke)' }}>
                 <CameraAltIcon />
             </Fab>
-            <Box component="form" sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                 <Type></Type>
-                <CssTextField label="Nom*" />
-                <CssTextField label="Race*" />
+                <CssTextField label="Nom*" value={nom} onChange={(e) => setNom(e.target.value)} />
+                <CssTextField label="Race*" value={race} onChange={(e) => setRace(e.target.value)} />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px' }}>
                     <div>
-                        <Card style={{ width: '100px', height: '90px' }}>
+                        <Card style={{ width: '100px', height: '90px' }} onClick={() => handleGenreSelection('Mâle')}>
                             <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'var(--all-fill)' }}>
                                 <MaleIcon style={{ fontSize: 60 }} />
                             </CardContent>
@@ -34,7 +51,7 @@ export default function AjoutAnimal() {
                         <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Mâle</p>
                     </div>
                     <div>
-                        <Card style={{ width: '100px', height: '90px' }}>
+                        <Card style={{ width: '100px', height: '90px' }} onClick={() => handleGenreSelection('Femelle')}>
                             <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'var(--all-fill)' }}>
                                 <FemaleIcon style={{ fontSize: 60 }} />
                             </CardContent>
@@ -42,11 +59,11 @@ export default function AjoutAnimal() {
                         <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Femmelle</p>
                     </div>
                 </div>
-                <CssTextField label="Age*" type="number" />
-                <CssTextField label="Description*" multiline rows={4} />
-                <CssTextField label="Spécificité" multiline rows={3} />
+                <CssTextField label="Age*" type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+                <CssTextField label="Description*" multiline rows={4} value={description} onChange={(e) => setDescription(e.target.value)} />
+                <CssTextField label="Spécificité" multiline rows={3} value={specificite} onChange={(e) => setSpecificite(e.target.value)} />
                 <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>
-                    <Button variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
+                    <Button type="submit" variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
                         Valider
                     </Button>
                     <Button variant="outlined" size="medium" style={{ borderColor: 'var(--all-stroke)', color: 'var(--all-stroke)' }}>
@@ -56,8 +73,8 @@ export default function AjoutAnimal() {
             </Box>
         </div>
     );
-
 }
+export default AjoutAnimal;
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
