@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Text from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import CardContent from '@mui/material/CardContent';
 import Type from '../components/Type';
@@ -13,12 +14,17 @@ import { alpha, styled } from '@mui/material/styles';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
 
 export default function AjoutAnimal() {
 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
+            <Fab size="medium" color="primary" aria-label="like" style={{ backgroundColor: 'var(--all-stroke)' }}>
+                <AddIcon />
+            </Fab>
             <Box component="form" sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                 <Type></Type>
                 <CssTextField label="Nom*" />
@@ -44,12 +50,12 @@ export default function AjoutAnimal() {
                 <CssTextField label="Age*" type="number" />
                 <CssTextField label="Description*" multiline rows={4} />
                 <CssTextField label="Spécificité" multiline rows={3} />
-                <div style={{ display: 'flex', gap: '20px' }}>
-                    <Button variant="contained" size="medium">
-                        Medium
+                <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>
+                    <Button variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
+                        Valider
                     </Button>
-                    <Button variant="outlined" size="medium">
-                        Medium
+                    <Button variant="outlined" size="medium" style={{ borderColor: 'var(--all-stroke)', color: 'var(--all-stroke)' }}>
+                        Annuler
                     </Button>
                 </div>
             </Box>
