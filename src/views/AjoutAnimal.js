@@ -22,6 +22,27 @@ const AjoutAnimal = () => {
     const [specificite, setSpecificite] = useState('');
     const [genre, setGenre] = useState('');
     const [localisation, setLocalisation] = useState('');
+    const [imageURL, setImageURL] = useState('');
+
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        axios.post('/upload', formData)
+            .then(response => {
+                // Store the uploaded image URL in state
+                setImageURL(response.data.url);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
+    const handleButtonClick = () => {
+        // Trigger click on file input when button is clicked
+        document.getElementById("fileInput").click();
+    };
 
     const handleSubmit = () => {
         const nouvelAnimal = {
@@ -33,6 +54,7 @@ const AjoutAnimal = () => {
             specificite: specificite,
             id_type: type,
             id_utilisateur: 1,
+            imageURL: imageURL,
         };
 
         axios.post(`https://milhet.alwaysdata.net/sae401/api/animaux/`, nouvelAnimal)
@@ -48,9 +70,10 @@ const AjoutAnimal = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
-                <Fab size="medium" color="primary" aria-label="like" style={{ backgroundColor: 'var(--all-stroke)' }}>
+                <Fab size="medium" color="primary" aria-label="like" style={{ backgroundColor: 'var(--all-stroke)' }} onClick={handleButtonClick}>
                     <CameraAltIcon />
                 </Fab>
+                <input id="fileInput" type="file" style={{ display: 'none' }} onChange={handleFileUpload} />
                 <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                     <Type></Type>
                     <CssTextField label="Prenom*" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
