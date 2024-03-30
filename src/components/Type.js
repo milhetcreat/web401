@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import CardContent from '@mui/material/CardContent';
 //import '../colors.css';
 
-export default function Type() {
+export default function Type({ value, setType }) {
     const url =
         "https://milhet.alwaysdata.net/sae401/api/types";
     let all = 5;
@@ -29,12 +29,17 @@ export default function Type() {
         fetchTypes();
     }, [url]);
 
+    const handleTypeClick = (typeId) => {
+        setType(typeId);
+    };
+
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '20px' }}>
             {listeType.map((type) => {
                 const cardClass = `card-${type.ID_TYPE}`;
                 return (
-                    <div>
+                    <div key={type.ID_TYPE} onClick={() => handleTypeClick(type.ID_TYPE)}>
                         <Card style={{ width: '100px', height: '90px' }}>
                             <CardContent className={cardClass} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Typography>

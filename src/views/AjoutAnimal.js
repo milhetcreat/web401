@@ -14,7 +14,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from 'axios';
 
 const AjoutAnimal = () => {
-    const [type, setType] = '';
+    const [type, setType] = useState('');
     const [prenom, setPrenom] = useState('');
     const [race, setRace] = useState('');
     const [age, setAge] = useState('');
@@ -22,7 +22,7 @@ const AjoutAnimal = () => {
     const [specificite, setSpecificite] = useState('');
     const [genre, setGenre] = useState('');
     const [localisation, setLocalisation] = useState('');
-    const [imageURL, setImageURL] = useState('');
+    const [photo, setphoto] = useState('');
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
@@ -32,7 +32,7 @@ const AjoutAnimal = () => {
         axios.post('/upload', formData)
             .then(response => {
                 // Store the uploaded image URL in state
-                setImageURL(response.data.url);
+                setphoto(response.data.url);
             })
             .catch(error => {
                 console.error(error);
@@ -46,15 +46,16 @@ const AjoutAnimal = () => {
 
     const handleSubmit = () => {
         const nouvelAnimal = {
-            prenom: prenom,
-            race: race,
-            genre: genre,
-            age: age,
-            description: description,
-            specificite: specificite,
-            id_type: type,
             id_utilisateur: 1,
-            imageURL: imageURL,
+            id_type: type,
+            prenom: prenom,
+            age: age,
+            genre: genre,
+            photo: photo,
+            localisation: localisation,
+            race: race,
+            specificite: specificite,
+            description: description,
         };
 
         axios.post(`https://milhet.alwaysdata.net/sae401/api/animaux/`, nouvelAnimal)
@@ -75,7 +76,7 @@ const AjoutAnimal = () => {
                 </Fab>
                 <input id="fileInput" type="file" style={{ display: 'none' }} onChange={handleFileUpload} />
                 <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Type></Type>
+                    <Type value={type} setType={setType}></Type>
                     <CssTextField label="Prenom*" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                     <CssTextField label="Race*" value={race} onChange={(e) => setRace(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px' }}>

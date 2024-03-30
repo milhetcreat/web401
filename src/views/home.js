@@ -9,7 +9,7 @@ export default function Test() {
 
     useEffect(() => {
         console.log(idType);
-            }, [idType]);
+    }, [idType]);
 
     return (
         <div>
