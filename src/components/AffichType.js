@@ -1,5 +1,5 @@
-import '../colors.css';
 import React, { useState, useEffect } from "react";
+import '../colors.css';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -39,8 +39,8 @@ export default function Type() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
       <Link to={"/types/" + all + "/animaux"} style={{ textDecoration: 'none', margin: '10px' }}>
-        <Card style={{ width: '100px', height: '90px', backgroundColor: 'var(--all-fill)', border: '1px solid var(--all-stroke)' }}>
-          <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Card style={{ width: '100px', height: '90px' }}>
+          <CardContent className={'card-5'} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Typography>
               <img
                 style={{ width: '50px', height: 'auto' }}
@@ -55,8 +55,8 @@ export default function Type() {
         const cardClass = `card-${type.ID_TYPE}`;
         return (
           <Link key={type.ID_TYPE} to={"/types/" + type.ID_TYPE + "/animaux"} style={{ textDecoration: 'none', margin: '10px' }}>
-            <Card className={cardClass} style={{ width: '100px', height: '90px' }}>
-              <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Card style={{ width: '100px', height: '90px'}}>
+              <CardContent className={cardClass} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography>
                   <img
                     style={{ width: '50px', height: 'auto' }}

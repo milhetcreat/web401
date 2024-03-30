@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import CardContent from '@mui/material/CardContent';
-import '../colors.css';
+//import '../colors.css';
 
 export default function Type() {
     const url =
@@ -35,8 +35,8 @@ export default function Type() {
                 const cardClass = `card-${type.ID_TYPE}`;
                 return (
                     <div>
-                        <Card className={cardClass} style={{ width: '100px', height: '90px' }}>
-                            <CardContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <Card style={{ width: '100px', height: '90px' }}>
+                            <CardContent className={cardClass} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Typography>
                                     <img
                                         style={{ width: '50px', height: 'auto' }}

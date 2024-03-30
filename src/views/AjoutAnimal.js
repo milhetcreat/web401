@@ -13,18 +13,53 @@ import Fab from '@mui/material/Fab';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 const AjoutAnimal = () => {
-    const [nom, setNom] = useState('');
+    const [type, setType] = '';
+    const [prenom, setPrenom] = useState('');
     const [race, setRace] = useState('');
     const [age, setAge] = useState('');
     const [description, setDescription] = useState('');
     const [specificite, setSpecificite] = useState('');
     const [genre, setGenre] = useState('');
+    const [localisation, setLocalisation] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Envoyer les données à votre backend pour les enregistrer dans la base de données
-        const animalData = { nom, race, genre, age, description, specificite };
-        console.log(animalData); // Vous devrez remplacer cette ligne par l'appel à votre API
+    const handleSubmit = () => {
+        const nouvelAnimal = {
+            prenom: prenom,
+            race: race,
+            genre: genre,
+            age: age,
+            description: description,
+            specificite: specificite,
+            id_type: type,
+            id_utilisateur: 1,
+        };
+
+        componentDidMount() {
+            // Simple POST request with a JSON body using fetch
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: 'React POST Request Example' })
+            };
+            fetch('https://milhet.alwaysdata.net/sae401/api/animaux/', requestOptions)
+                .then(response => response.json())
+                .then(data => this.setState({ postId: data.id }));
+        }
+
+        // Envoyer la requête POST à l'API
+        //.post(nouvelAnimal)
+          //  .then(response => {
+            //    setPrenom('');
+              //  setRace('');
+                //setGenre('');
+           //     setAge('');
+             //   setDescription('');
+               // setSpecificite('');
+            //    setType('');
+          //  })
+          //  .catch(error => {
+           //     console.error("Erreur lors de l'ajout de l'animal :", error);
+           // });
     };
 
     return (
@@ -34,7 +69,7 @@ const AjoutAnimal = () => {
             </Fab>
             <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                 <Type></Type>
-                <CssTextField label="Nom*" value={nom} onChange={(e) => setNom(e.target.value)} />
+                <CssTextField label="Prenom*" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                 <CssTextField label="Race*" value={race} onChange={(e) => setRace(e.target.value)} />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px' }}>
                     <div>
@@ -55,6 +90,7 @@ const AjoutAnimal = () => {
                     </div>
                 </div>
                 <CssTextField label="Age*" type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+                <CssTextField label="Localisation*" value={localisation} onChange={(e) => setLocalisation(e.target.value)} />
                 <CssTextField label="Description*" multiline rows={4} value={description} onChange={(e) => setDescription(e.target.value)} />
                 <CssTextField label="Spécificité" multiline rows={3} value={specificite} onChange={(e) => setSpecificite(e.target.value)} />
                 <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>

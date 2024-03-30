@@ -2,7 +2,7 @@
 
     /* Types d'Animaux Color */
 
-    --bg-animal : #f7e6dc;
+    --bg-animal: #f7e6dc;
 
     --all-fill: #D6C3B7;
     --all-stroke: #84746A;
@@ -30,11 +30,24 @@
     font-family: "Dancing Script", cursive;
     font-optical-sizing: auto;
     font-style: normal;
-  }
+}
+
+.card-5 {
+    background-color: var(--all-fill);
+    border: 1px solid var(--all-stroke);
+}
+
+.card-5:hover {
+    background-color: var(--all-stroke);
+}
 
 .card-0 {
     background-color: var(--cat-fill);
     border: 1px solid var(--cat-stroke);
+}
+
+.card-0:hover {
+    background-color: var(--cat-stroke);
 }
 
 .card-1 {
@@ -42,9 +55,17 @@
     border: 1px solid var(--dog-stroke);
 }
 
+.card-1:hover {
+    background-color: var(--dog-stroke);
+}
+
 .card-2 {
     background-color: var(--rabit-fill);
     border: 1px solid var(--rabit-stroke);
+}
+
+.card-2:hover {
+    background-color: var(--rabit-stroke);
 }
 
 .card-3 {
@@ -52,7 +73,15 @@
     border: 1px solid var(--bird-stroke);
 }
 
+.card-3:hover {
+    background-color: var(--bird-stroke);
+}
+
 .card-4 {
     background-color: var(--fish-fill);
     border: 1px solid var(--fish-stroke);
+}
+
+.card-4:hover {
+    background-color: var(--fish-stroke);
 }
