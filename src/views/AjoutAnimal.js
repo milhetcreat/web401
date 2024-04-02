@@ -68,12 +68,15 @@ const AjoutAnimal = () => {
             body: JSON.stringify(nouvelAnimal)
         };
         fetch('/api/animaux', fetchOptions)
-            .then((response) => response.json())
+            .then((response) => {
+                console.log(response.text());
+                return response.json()
+            })
             .then((dataJSON) => {
                 console.log(dataJSON)
             })
             .catch((error) => {
-                console.log(error);
+                console.error("Erreur lors de la requête:", error);
             });
     };
 
