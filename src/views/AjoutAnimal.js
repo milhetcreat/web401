@@ -14,7 +14,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from 'axios';
 
 const AjoutAnimal = () => {
-    const [type, setType] = useState('');
+    const [type, setType] = useState(null);
     const [prenom, setPrenom] = useState('');
     const [race, setRace] = useState('');
     const [age, setAge] = useState('');
