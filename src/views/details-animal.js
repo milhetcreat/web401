@@ -73,7 +73,7 @@ export default function DetailAnimal() {
                         <div>
                             <img
                                 width="400px"
-                                src={"https://milhet.alwaysdata.net/sae401/" + animal.PHOTO}
+                                src={"https://milhet.alwaysdata.net/sae401/images/" + animal.PHOTO}
                                 alt={animal.PERNOM}
                             />
                         </div>

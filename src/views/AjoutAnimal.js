@@ -1,5 +1,5 @@
 import '../colors.css';
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Type from '../components/Type';
@@ -14,6 +14,8 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from 'axios';
 
 const AjoutAnimal = () => {
+    const fileInputRef = useRef(null);
+
     const [type, setType] = useState(null);
     const [prenom, setPrenom] = useState('');
     const [race, setRace] = useState('');
@@ -33,7 +35,7 @@ const AjoutAnimal = () => {
     };
 
     let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json")
+    myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -47,6 +49,7 @@ const AjoutAnimal = () => {
         formData.append("RACE", race);
         formData.append("SPECIFICITE", specificite);
         formData.append("DESCRIPTION", description);
+        
         const fetchOptions = {
             method: "POST",
             headers: myHeaders,
@@ -86,7 +89,7 @@ const AjoutAnimal = () => {
                     accept="image/*"
                     id="fichier"
                     type="file"
-                    ref={photo}
+                    ref={fileInputRef}
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                 />
