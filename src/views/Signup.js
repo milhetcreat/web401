@@ -22,7 +22,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {Typography, Link} from '@mui/material';
 
-export default function AjoutAnimal() {
+export default function AjoutUser() {
     const fileInputRef = useRef(null);
 
     const [showPassword, setShowPassword] = React.useState(false);
