@@ -37,7 +37,7 @@ const AjoutAnimal = () => {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         const formData = new FormData();
         formData.append("ID_UTILISATEUR", 1);
         formData.append("ID_TYPE", type);

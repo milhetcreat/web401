@@ -52,7 +52,7 @@ export default function AjoutAnimal() {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         const formData = new FormData();
         formData.append("name", name);
         formData.append("email", email);
@@ -106,7 +106,7 @@ export default function AjoutAnimal() {
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                 />
-                <Box component="form" sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
+                <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                     <CssTextField label="Nom*" value={name} onChange={(e) => setName(e.target.value)} />
                     <CssTextField label="Prénom*" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                     <CssTextField label="Ville*" value={localisation} onChange={(e) => setLocalisation(e.target.value)} />
@@ -151,7 +151,7 @@ export default function AjoutAnimal() {
                         </div>
                     </div>
                     <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>
-                        <Button variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
+                        <Button type="submit" variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
                             S'inscrire
                         </Button>
                         <Button variant="outlined" size="medium" style={{ borderColor: 'var(--all-stroke)', color: 'var(--all-stroke)' }}>
