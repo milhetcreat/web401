@@ -55,9 +55,6 @@ const AjoutAnimal = () => {
             headers: myHeaders,
             body: formData
         };
-        for (const value of formData.values()) {
-            console.log(value);
-          }
         fetch('https://milhet.alwaysdata.net/sae401/api/animaux', fetchOptions)
             .then((response) => {
                 response.json().then((value) => {
