@@ -67,7 +67,7 @@ export default function AffichListAnimaux() {
                         <div style={{ textAlign: 'center' }}>
                             <img
                                 style={{ width: '300px', height: 'auto' }}
-                                src={"https://milhet.alwaysdata.net/sae401/" + animal.PHOTO}
+                                src={"https://milhet.alwaysdata.net/sae401/images/" + animal.PHOTO}
                                 alt={animal.prenom}
                             />
                         </div>
