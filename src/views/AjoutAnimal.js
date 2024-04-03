@@ -14,7 +14,6 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from 'axios';
 
 const AjoutAnimal = () => {
-    //const url = "https://milhet.alwaysdata.net/sae401/api/animaux/"
     const [type, setType] = useState(null);
     const [prenom, setPrenom] = useState('');
     const [race, setRace] = useState('');
@@ -23,54 +22,44 @@ const AjoutAnimal = () => {
     const [specificite, setSpecificite] = useState('');
     const [genre, setGenre] = useState('');
     const [localisation, setLocalisation] = useState('');
-    const [photo, setphoto] = useState('');
+    const [photo, setPhoto] = useState({});
 
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        const formData = new FormData();
-        formData.append('file', file);
-
-        axios.post('/upload', formData)
-            .then(response => {
-                // Store the uploaded image URL in state
-                setphoto(response.data.url);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    const handleFileChange = (event) => {
+        setPhoto(event.target.files[0]);
     };
 
     const handleButtonClick = () => {
-        // Trigger click on file input when button is clicked
-        document.getElementById("fileInput").click();
+        document.getElementById("fichier").click();
     };
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json")
     const handleSubmit = (event) => {
         event.preventDefault();
-        const nouvelAnimal = {
-            ID_UTILISATEUR: 1,
-            ID_TYPE: type,
-            PRENOM: prenom,
-            AGE: age,
-            GENRE: genre,
-            PHOTO: photo,
-            LOCALISATION: localisation,
-            RACE: race,
-            SPECIFICITE: specificite,
-            DESCRIPTION: description,
-        };
-        console.log(nouvelAnimal);
+        const formData = new FormData();
+        formData.append("ID_UTILISATEUR", 1);
+        formData.append("ID_TYPE", type);
+        formData.append("PRENOM", prenom);
+        formData.append("AGE", age);
+        formData.append("GENRE", genre);
+        formData.append("PHOTO", photo);
+        formData.append("LOCALISATION", localisation);
+        formData.append("RACE", race);
+        formData.append("SPECIFICITE", specificite);
+        formData.append("DESCRIPTION", description);
         const fetchOptions = {
             method: "POST",
             headers: myHeaders,
-            body: JSON.stringify(nouvelAnimal)
+            body: formData
         };
-        fetch('/api/animaux', fetchOptions)
+        for (const value of formData.values()) {
+            console.log(value);
+          }
+        fetch('https://milhet.alwaysdata.net/sae401/api/animaux', fetchOptions)
             .then((response) => {
-                console.log(response.text());
-                return response.json()
+                response.json().then((value) => {
+                    console.log(value);
+                })
             })
             .then((dataJSON) => {
                 console.log(dataJSON)
@@ -84,10 +73,23 @@ const AjoutAnimal = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
-                <Fab size="medium" color="primary" aria-label="like" style={{ backgroundColor: 'var(--all-stroke)' }} onClick={handleButtonClick}>
+                <Fab
+                    size="medium"
+                    color="primary"
+                    aria-label="like"
+                    style={{ backgroundColor: "var(--all-stroke)" }}
+                    onClick={handleButtonClick}
+                >
                     <CameraAltIcon />
                 </Fab>
-                <input id="fileInput" type="file" style={{ display: 'none' }} onChange={handleFileUpload} />
+                <input
+                    accept="image/*"
+                    id="fichier"
+                    type="file"
+                    ref={photo}
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                />
                 <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
                     <Type value={type} setType={setType}></Type>
                     <CssTextField label="Prenom*" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
