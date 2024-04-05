@@ -55,12 +55,18 @@ export default function Login() {
             .then((response) => {
                 response.json().then((value) => {
                     console.log(value);
+                    if (value && value.accessToken && value.user_id) {
+                        // Stockez les informations dans le local storage
+                        localStorage.setItem('accessToken', value.accessToken);
+                        localStorage.setItem('user_id', value.user_id);
+                        console.log('Informations stockées dans le local storage :', value);
+                    } else {
+                        console.error('Les données reçues ne contiennent pas les informations attendues :', value);
+                    }
                 })
             })
             .then((dataJSON) => {
                 console.log(dataJSON);
-                //const token = localStorage.getItem('token');
-                //const idUser = localStorage.getItem('user_id');
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête:", error);

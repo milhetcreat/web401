@@ -9,6 +9,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { BrowserRouter as Router, Route, Routes, Link, Switch } from 'react-router-dom';
 import { Padding } from '@mui/icons-material';
+import MessageIcon from '@mui/icons-material/Message';
 
 function App() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -33,8 +34,9 @@ function App() {
     const leftDrawerList = (
         <div role="presentation" onClick={toggleLeftDrawer(false)} onKeyDown={toggleLeftDrawer(false)}>
             <ListItem style={{ margin: '10px' }}>
-                <nav>
+                <nav style={{display: 'flex', flexDirection:'column', justifyContent: 'start', gap: '20px'}}>
                     <Link className='Link' to="/" style={{ color: 'black', display: 'flex', justifyContent: 'center', gap: '4px', textDecoration: 'none' }}> <HomeIcon></HomeIcon>Home</Link>
+                    <Link className='Link' to="/messages" style={{ color: 'black', display: 'flex', justifyContent: 'center', gap: '4px', textDecoration: 'none' }}> <MessageIcon></MessageIcon>Messages</Link>
                 </nav>
             </ListItem>
         </div>

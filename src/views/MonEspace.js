@@ -24,8 +24,11 @@ import '../colors.css';
 
 export default function Detailuser() {
     //const { idUser } = useParams();
-    const idUser = 1;
+    //const idUser = 1;
     const [user, setUser] = useState(null);
+
+    const idUser = localStorage.getItem('user_id');
+    const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
         const fetchInfoUser = () => {
