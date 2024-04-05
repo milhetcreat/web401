@@ -62,13 +62,13 @@ export default function MonEspace() {
                                     <FavoriteIcon />
                                 </Fab>
                             }
-                            title={message.PRENOM}
+                            title={message.user.name}
                             titleTypographyProps={{ variant: 'h6', style: { fontWeight: 'bold' } }}
                         />
                         <div style={{ textAlign: 'center' }}>
                             <img
                                 style={{ width: '300px', height: 'auto' }}
-                                src={"https://milhet.alwaysdata.net/sae401/images/" + message.PHOTO}
+                                src={"https://milhet.alwaysdata.net/sae401/images/" + message.animal.PHOTO}
                                 alt={message.prenom}
                             />
                         </div>
@@ -77,7 +77,7 @@ export default function MonEspace() {
                                 {message.RACE}, {message.AGE} {message.AGE === 1 ? 'an' : 'ans'}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" style={{ fontStyle: 'italic' }}>
-                                {message.LOCALISATION}
+                                {message.user.name}
                             </Typography>
                         </CardContent>
                     </Card>
