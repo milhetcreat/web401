@@ -34,12 +34,19 @@ function App() {
     const leftDrawerList = (
         <div role="presentation" onClick={toggleLeftDrawer(false)} onKeyDown={toggleLeftDrawer(false)}>
             <ListItem style={{ margin: '10px' }}>
-                <nav style={{display: 'flex', flexDirection:'column', justifyContent: 'start', gap: '20px'}}>
-                    <Link className='Link' to="/" style={{ color: 'black', display: 'flex', justifyContent: 'center', gap: '4px', textDecoration: 'none' }}> <HomeIcon></HomeIcon>Home</Link>
-                    <Link className='Link' to="/messages" style={{ color: 'black', display: 'flex', justifyContent: 'center', gap: '4px', textDecoration: 'none' }}> <MessageIcon></MessageIcon>Messages</Link>
+                <nav style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: '20px' }}>
+                    <Link className='Link' to="/" style={{ color: 'black', display: 'flex', gap: '4px', textDecoration: 'none' }}>
+                        <HomeIcon></HomeIcon>
+                        <span>Home</span>
+                    </Link>
+                    <Link className='Link' to="/messages" style={{ color: 'black', display: 'flex', gap: '4px', textDecoration: 'none' }}>
+                        <MessageIcon></MessageIcon>
+                        <span>Messages</span>
+                    </Link>
                 </nav>
             </ListItem>
         </div>
+
     );
 
     return (
@@ -74,9 +81,9 @@ function App() {
                         open={Boolean(anchorEl)}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/login" style={{ textDecoration: 'none', color: 'black'}}>Se Connecter</Link></MenuItem>
-                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/signup" style={{ textDecoration: 'none', color: 'black'}}>S'inscrire</Link></MenuItem>
-                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/account" style={{ textDecoration: 'none', color: 'black'}}>Mon Espace</Link></MenuItem>
+                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/login" style={{ textDecoration: 'none', color: 'black' }}>Se Connecter</Link></MenuItem>
+                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/signup" style={{ textDecoration: 'none', color: 'black' }}>S'inscrire</Link></MenuItem>
+                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/account" style={{ textDecoration: 'none', color: 'black' }}>Mon Espace</Link></MenuItem>
                         <MenuItem onClick={handleMenuClose}>Se déconnecter</MenuItem>
                     </Menu>
                 </Toolbar>

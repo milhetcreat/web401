@@ -22,7 +22,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ReportIcon from '@mui/icons-material/Report';
 import '../colors.css';
 
-export default function Detailuser() {
+export default function MonEspace() {
     //const { idUser } = useParams();
     //const idUser = 1;
     const [user, setUser] = useState(null);

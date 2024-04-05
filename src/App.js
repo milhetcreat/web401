@@ -9,6 +9,7 @@ import AjoutAnimal from './views/AjoutAnimal';
 import Signup from './views/Signup';
 import Login from './views/Login';
 import MonEspace from './views/MonEspace';
+import Messages from './views/Messages';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<MonEspace />} />
+          <Route path="/messages" element={<Messages />} />
         </Routes>
       </main>
     </Router>
