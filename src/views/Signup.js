@@ -20,7 +20,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import {Typography, Link} from '@mui/material';
+import { Typography, Link } from '@mui/material';
 
 export default function Signup() {
     const fileInputRef = useRef(null);
@@ -151,8 +151,13 @@ export default function Signup() {
                             <p style={{ color: 'black', textAlign: 'center', margin: '5px 0' }}>Femme</p>
                         </div>
                     </div>
-                    <Link to="/login">J'ai déja un compte Se Connecter</Link>
-                    <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>
+                    <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
+                        <Typography>J'ai déjà un compte</Typography>
+                        <Link className='Link' href="/login">
+                            <Typography>Se Connecter</Typography>
+                        </Link>
+                    </div>
+                    <div style={{ display: 'flex', gap: '20px', marginTop: '30px' }}>
                         <Button type="submit" variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
                             S'inscrire
                         </Button>

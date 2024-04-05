@@ -92,7 +92,12 @@ export default function Login() {
                             label="Password*" value={password} onChange={(e) => setPassword(e.target.value)}
                         />
                     </StyledPasswordInput>
-                    <Link to="/signup" style={{ textAlign: 'center' }}>Je n'ai pas encore de compte S'Inscrire</Link>
+                    <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
+                        <Typography>Je n'ai pas encore de compte</Typography>
+                        <Link className='Link' href="/signup">
+                            <Typography>S'Inscrire</Typography>
+                        </Link>
+                    </div>
                     <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>
                         <Button type="submit" variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
                             Se Connecter
