@@ -1,5 +1,6 @@
 import '../colors.css';
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
@@ -20,10 +21,10 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import {Typography, Link} from '@mui/material';
+import { Typography, Link } from '@mui/material';
 
-export default function Connexion() {
-    
+export default function Login() {
+
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -32,11 +33,46 @@ export default function Connexion() {
         event.preventDefault();
     };
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    //const navigate = useNavigate();
+
+    const handleLogin = async (event) => {
+        const headers = new Headers();
+        headers.append("Accept", "application/json")
+        event.preventDefault();
+        const login = {
+            email: email,
+            password: password,
+        };
+        console.warn(email, password)
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": headers
+            },
+            body: JSON.stringify(login)
+        };
+        fetch('https://milhet.alwaysdata.net/sae401/api/login', fetchOptions)
+            .then((response) => {
+                response.json().then((value) => {
+                    console.log(value);
+                })
+            })
+            .then((dataJSON) => {
+                console.log(dataJSON);
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la requête:", error);
+            });
+
+    }
+
     return (
         <div >
-            <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
+            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
                 <Box sx={{ '& > :not(style)': { m: 1, width: '700px' }, }} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column' }}>
-                    <CssTextField label="Mail*"/>
+                    <CssTextField label="Mail*" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <StyledPasswordInput sx={{ m: 1, width: '25ch' }} variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                         <OutlinedInput
@@ -54,10 +90,10 @@ export default function Connexion() {
                                     </IconButton>
                                 </InputAdornment>
                             }
-                            label="Password*"
+                            label="Password*" value={password} onChange={(e) => setPassword(e.target.value)}
                         />
                     </StyledPasswordInput>
-                    <Link to="/signup" style={{textAlign: 'center'}}>Je n'ai pas encore de compte S'Inscrire</Link>
+                    <Link to="/signup" style={{ textAlign: 'center' }}>Je n'ai pas encore de compte S'Inscrire</Link>
                     <div style={{ display: 'flex', gap: '20px', marginTop: '70px' }}>
                         <Button type="submit" variant="contained" size="medium" style={{ backgroundColor: 'var(--all-stroke)' }}>
                             Se Connecter

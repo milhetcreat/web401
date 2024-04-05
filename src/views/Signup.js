@@ -22,7 +22,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {Typography, Link} from '@mui/material';
 
-export default function AjoutUser() {
+export default function Signup() {
     const fileInputRef = useRef(null);
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -53,7 +53,7 @@ export default function AjoutUser() {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
         const formData = new FormData();
         formData.append("name", name);
         formData.append("email", email);
@@ -72,7 +72,7 @@ export default function AjoutUser() {
         for (const value of formData.values()) {
             console.log(value);
         }
-        fetch('https://milhet.alwaysdata.net/sae401/api/animaux', fetchOptions)
+        fetch('https://milhet.alwaysdata.net/sae401/api/utilisateurs', fetchOptions)
             .then((response) => {
                 response.json().then((value) => {
                     console.log(value);

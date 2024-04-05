@@ -33,7 +33,6 @@ export default function AffichListAnimaux() {
                     return response.json();
                 })
                 .then((dataJSON) => {
-                    console.log(dataJSON);
                     setAnimaux(dataJSON);
                 })
                 .catch((error) => {
