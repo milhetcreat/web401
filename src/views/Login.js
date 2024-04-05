@@ -39,7 +39,7 @@ export default function Login() {
 
     const handleLogin = async (event) => {
         const headers = new Headers();
-        headers.append("Accept", "application/json")
+        headers.append("Content-Type", "application/json")
         event.preventDefault();
         const login = {
             email: email,
@@ -48,9 +48,7 @@ export default function Login() {
         console.warn(email, password)
         const fetchOptions = {
             method: "POST",
-            headers: {
-                "Content-Type": headers
-            },
+            headers: headers,
             body: JSON.stringify(login)
         };
         fetch('https://milhet.alwaysdata.net/sae401/api/login', fetchOptions)
@@ -61,6 +59,7 @@ export default function Login() {
             })
             .then((dataJSON) => {
                 console.log(dataJSON);
+                //const token = localStorage.getItem('token');
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête:", error);
