@@ -44,7 +44,7 @@ export default function Type() {
             <Typography>
               <img
                 style={{ width: '50px', height: 'auto' }}
-                src={"https://milhet.alwaysdata.net/sae401/all.png"}
+                src={"https://milhet.alwaysdata.net/sae401/images/all.png"}
               />
             </Typography>
           </CardContent>
@@ -60,7 +60,7 @@ export default function Type() {
                 <Typography>
                   <img
                     style={{ width: '50px', height: 'auto' }}
-                    src={"https://milhet.alwaysdata.net/sae401/" + type.ICON}
+                    src={"https://milhet.alwaysdata.net/sae401/images/" + type.ICON}
                   />
                 </Typography>
               </CardContent>
