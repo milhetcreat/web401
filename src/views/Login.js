@@ -59,7 +59,8 @@ export default function Login() {
             })
             .then((dataJSON) => {
                 console.log(dataJSON);
-                //const token = localStorage.getItem('token');
+                const token = localStorage.getItem('token');
+                const idUser = localStorage.getItem('user_id');
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête:", error);

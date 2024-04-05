@@ -74,7 +74,7 @@ function App() {
                     >
                         <MenuItem onClick={handleMenuClose}><Link className='Link' to="/login" style={{ textDecoration: 'none', color: 'black'}}>Se Connecter</Link></MenuItem>
                         <MenuItem onClick={handleMenuClose}><Link className='Link' to="/signup" style={{ textDecoration: 'none', color: 'black'}}>S'inscrire</Link></MenuItem>
-                        <MenuItem onClick={handleMenuClose}>Mon Espace</MenuItem>
+                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/account" style={{ textDecoration: 'none', color: 'black'}}>Mon Espace</Link></MenuItem>
                         <MenuItem onClick={handleMenuClose}>Se déconnecter</MenuItem>
                     </Menu>
                 </Toolbar>
