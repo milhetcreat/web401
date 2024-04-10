@@ -16,16 +16,22 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import '../colors.css';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 export default function MonEspace() {
     //const { idUser } = useParams();
     //const idUser = 1;
     const [user, setUser] = useState(null);
 
-    const idUser = localStorage.getItem('user_id');
+    //const idUser = localStorage.getItem('user_id');
+    const idUser = 1;
     const token = localStorage.getItem('accessToken');
 
-    let url = `https://milhet.alwaysdata.net/sae401/api/conversations?idutilisateur=${idUser}`
+    //let url = `https://milhet.alwaysdata.net/sae401/api/conversations?idutilisateur=${idUser}`
+    let url = `https://milhet.alwaysdata.net/sae401/api/conversations?idutilisateur=3`
     const [listeMessages, setMessages] = useState([]);
 
     useEffect(() => {
@@ -36,6 +42,7 @@ export default function MonEspace() {
                     return response.json();
                 })
                 .then((dataJSON) => {
+                    console.log(dataJSON);
                     setMessages(dataJSON);
                 })
                 .catch((error) => {
@@ -47,42 +54,49 @@ export default function MonEspace() {
 
     }, [url]);
 
-    return (
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '50px' }}>
-            <div>
-            {listeMessages.map((message) => (
-                <Link key={message.ID_message} to={"/details/" + message.ID_message} style={{ textDecoration: 'none', margin: '10px' }}>
-                    <Card sx={{ maxWidth: 345, marginBottom: '10px' }}>
-                        <CardHeader
-                            avatar={
-                                message.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
-                            }
-                            action={
-                                <Fab size="small" color="primary" aria-label="like">
-                                    <FavoriteIcon />
-                                </Fab>
-                            }
-                            title={message.user.name}
-                            titleTypographyProps={{ variant: 'h6', style: { fontWeight: 'bold' } }}
+    const conversations = listeMessages.reduce((acc, message) => {
+        if (!acc[message.ID_CONVERSATION]) {
+            acc[message.ID_CONVERSATION] = message;
+        }
+        return acc;
+    }, {});
+
+    const conversationCards = Object.values(conversations).map((message) => (
+        <Link key={message.ID_message} to={"/details/" + message.ID_message} style={{ textDecoration: 'none', margin: '20px' }}>
+            <Card variant="outlined" sx={{ maxWidth: 360 }}>
+                <Box sx={{ p: 2 }}>
+                    <Stack direction="row" justifyContent="space-around" alignItems="center" gap="20px">
+                        <img
+                            width="100px"
+                            src={"https://milhet.alwaysdata.net/sae401/images/" + message.animal.PHOTO}
+                            alt={message.animal.PRENOM}
                         />
-                        <div style={{ textAlign: 'center' }}>
-                            <img
-                                style={{ width: '300px', height: 'auto' }}
-                                src={"https://milhet.alwaysdata.net/sae401/images/" + message.animal.PHOTO}
-                                alt={message.prenom}
-                            />
-                        </div>
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary" style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden', WebkitLineClamp: 3, fontWeight: '600' }}>
-                                {message.RACE}, {message.AGE} {message.AGE === 1 ? 'an' : 'ans'}
+                        <Stack direction="column" justifyContent="space-between" alignItems="start">
+                            <Typography gutterBottom variant="h6" component="div">
+                                {`${message.user.prenom} ${message.user.name}`}
                             </Typography>
-                            <Typography variant="body2" color="text.secondary" style={{ fontStyle: 'italic' }}>
-                                {message.user.name}
+                            <Typography gutterBottom variant="h6" component="div">
+                                {`${message.animal.PRENOM}, ${message.animal.RACE}`}
                             </Typography>
-                        </CardContent>
-                    </Card>
-                </Link>
-            ))}
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Card>
+        </Link>
+    ));
+
+    return (
+        <div style={{ display: 'flex', gap: '20px', justifyContent: 'space-between' }}>
+            <div>
+                <Typography gutterBottom variant="h1" component="div" style={{ fontSize: '25px', fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>
+                    Tous les messages
+                </Typography>
+                <div>
+                    {conversationCards}
+                </div>
+            </div>
+            <div>
+                toto
             </div>
             <div>
                 toto
