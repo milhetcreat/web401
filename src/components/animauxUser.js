@@ -25,6 +25,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EditIcon from '@mui/icons-material/Edit';
+import NbLike from "./nbLike";
 import '../colors.css';
 
 export default function ListAnimauxUser() {
@@ -56,12 +57,13 @@ export default function ListAnimauxUser() {
 
     }, [url]);
 
-
+    const [critere, setCritere] = useState("");
+    //let animal.ID_ANIMAL = setCritere();
 
     return (
         <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '10px' }}>
             {listeAnimaux.map((animal) => (
-                <Card variant="outlined" sx={{ maxWidth: 600 }}>
+                <Card key={animal.ID_ANIMAL} variant="outlined" sx={{ maxWidth: 600 }}>
                     <Box sx={{ p: 2 }}>
                         <Stack direction="row" justifyContent="space-around" gap="20px">
                             <img
@@ -79,7 +81,7 @@ export default function ListAnimauxUser() {
                                         <Fab size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white' }}>
                                             <FavoriteBorderIcon />
                                         </Fab>
-                                        <Typography>toto</Typography>
+                                        <NbLike critere={animal.ID_ANIMAL}></NbLike>
                                     </div>
                                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px'}}>
                                         <Fab size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white' }}>
