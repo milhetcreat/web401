@@ -45,7 +45,7 @@ export default function Type({ value, setType }) {
                                 <Typography>
                                     <img
                                         style={{ width: '50px', height: 'auto' }}
-                                        src={"https://milhet.alwaysdata.net/sae401/" + type.ICON}
+                                        src={"https://milhet.alwaysdata.net/sae401/images/" + type.ICON}
                                     />
                                 </Typography>
                             </CardContent>

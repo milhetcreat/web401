@@ -30,14 +30,14 @@ export default function MonEspace() {
     return (
         <div style={{ marginRight: '100px', marginLeft: '100px' }}>
             <p>Info User</p>
-            <p style={{fontSize: '22px', fontWeight: '500'}}>Mes Animaux</p>
+            <p style={{ fontSize: '22px', fontWeight: '500' }}>Mes Animaux</p>
             <ListAnimauxUser></ListAnimauxUser>
-            <div style={{textAlign: 'center', marginTop: '50px'}}>
-            <Link className='Link' to={"/ajoutanimal"}>
-                <Fab size="medium" style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
-                    <AddIcon />
-                </Fab>
-            </Link>
+            <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                <Link className='Link' to="/ajoutanimal">
+                    <Fab size="medium" style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
+                        <AddIcon />
+                    </Fab>
+                </Link>
             </div>
         </div>
     );
