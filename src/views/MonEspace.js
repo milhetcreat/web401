@@ -23,9 +23,16 @@ import ReportIcon from '@mui/icons-material/Report';
 import '../colors.css';
 import InfoUser from "../components/infoUser";
 import ListAnimauxUser from "../components/animauxUser";
+import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
 
 export default function MonEspace() {
+
+    const navigate = useNavigate();
+
+    const NavigateAjout = () => {
+        navigate("/ajoutanimal");
+    };
 
     return (
         <div style={{ marginRight: '100px', marginLeft: '100px' }}>
@@ -33,11 +40,9 @@ export default function MonEspace() {
             <p style={{ fontSize: '22px', fontWeight: '500' }}>Mes Animaux</p>
             <ListAnimauxUser></ListAnimauxUser>
             <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                <Link className='Link' to="/ajoutanimal">
-                    <Fab size="medium" style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
+                    <Fab size="medium" onClick={NavigateAjout} style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
                         <AddIcon />
                     </Fab>
-                </Link>
             </div>
         </div>
     );
