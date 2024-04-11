@@ -21,8 +21,8 @@ import PetsIcon from '@mui/icons-material/Pets';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ReportIcon from '@mui/icons-material/Report';
 import '../colors.css';
-import InfoUser from "../components/infoUser";
 import ListAnimauxUser from "../components/animauxUser";
+import InfoUser from "../components/infoUser";
 import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
 
@@ -41,6 +41,7 @@ export default function MonEspace() {
     return (
         <div style={{ marginRight: '100px', marginLeft: '100px' }}>
             <p>Info User</p>
+            <InfoUser></InfoUser>
             <p style={{ fontSize: '22px', fontWeight: '500' }}>Mes Animaux</p>
             <ListAnimauxUser NavigateModif={NavigateModif}></ListAnimauxUser>
             <div style={{ textAlign: 'center', marginTop: '50px' }}>

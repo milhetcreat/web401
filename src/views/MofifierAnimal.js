@@ -82,7 +82,7 @@ const ModifierAnimal = (props) => {
                 <Link underline="hover" color="inherit" href="/account">
                     Mon Espace
                 </Link>
-                <Typography color="text.primary">Ajout Animal</Typography>
+                <Typography color="text.primary">Modification Animal</Typography>
             </Breadcrumbs>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px', gap: '40px' }}>
                 <Fab
