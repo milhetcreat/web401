@@ -1,5 +1,6 @@
 import '../colors.css';
 import React, { useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Type from '../components/Type';
@@ -15,7 +16,8 @@ import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 
-const AjoutAnimal = () => {
+const ModifierAnimal = (props) => {
+
     const fileInputRef = useRef(null);
 
     const [type, setType] = useState(null);
@@ -36,6 +38,8 @@ const AjoutAnimal = () => {
         document.getElementById("fichier").click();
     };
 
+    const { idAnimal } = useParams();
+
     let myHeaders = new Headers();
     //myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
@@ -53,11 +57,11 @@ const AjoutAnimal = () => {
         formData.append("DESCRIPTION", description);
 
         const fetchOptions = {
-            method: "POST",
+            method: "PUT",
             headers: myHeaders,
             body: formData
         };
-        fetch('https://milhet.alwaysdata.net/sae401/api/animaux', fetchOptions)
+        fetch(`https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}` , fetchOptions)
             .then((response) => {
                 response.json().then((value) => {
                     console.log(value);
@@ -138,7 +142,7 @@ const AjoutAnimal = () => {
     );
 }
 
-export default AjoutAnimal;
+export default ModifierAnimal;
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {

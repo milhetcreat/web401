@@ -23,7 +23,7 @@ import ReportIcon from '@mui/icons-material/Report';
 import '../colors.css';
 
 export default function NbLike(props) {
-    let idAnimal = props.critere; // Utilisez props.critere au lieu de props.pcritere
+    let idAnimal = props.critere; 
     const [like, setLike] = useState(null);
 
     useEffect(() => {

@@ -26,9 +26,11 @@ import Stack from '@mui/material/Stack';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EditIcon from '@mui/icons-material/Edit';
 import NbLike from "./nbLike";
+import { useNavigate } from "react-router-dom";
 import '../colors.css';
 
-export default function ListAnimauxUser() {
+export default function ListAnimauxUser({ NavigateModif }) {
+    
     //const { idUser } = useParams();
     const idUser = 1;
     const [user, setUser] = useState(null);
@@ -57,9 +59,6 @@ export default function ListAnimauxUser() {
 
     }, [url]);
 
-    const [critere, setCritere] = useState("");
-    //let animal.ID_ANIMAL = setCritere();
-
     return (
         <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '10px' }}>
             {listeAnimaux.map((animal) => (
@@ -84,7 +83,7 @@ export default function ListAnimauxUser() {
                                         <NbLike critere={animal.ID_ANIMAL}></NbLike>
                                     </div>
                                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px'}}>
-                                        <Fab size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white' }}>
+                                        <Fab onClick={() => NavigateModif(animal.ID_ANIMAL)} size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white' }}>
                                             <EditIcon />
                                         </Fab>
                                         <Typography>Edit</Typography>

@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/types/5/animaux" element={<Home />} />
           <Route path="/details/:idAnimal" element={<DetailAnimal />} />
           <Route path="/ajoutanimal" element={<AjoutAnimal />} />
-          <Route path="/modifieranimal" element={<ModifierAnimal />} />
+          <Route path="/modifieranimal/:idAnimal" element={<ModifierAnimal />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<MonEspace />} />

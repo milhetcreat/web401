@@ -23,8 +23,6 @@ import Fab from '@mui/material/Fab';
 
 export default function AffichListAnimaux(props) {
     let idType = props.idType;
-    const url =
-        "https://milhet.alwaysdata.net/sae401/api/animaux/";
     let url2 = `https://milhet.alwaysdata.net/sae401/api/types/${idType}/animaux`
     const [listeAnimaux, setAnimaux] = useState([]);
 

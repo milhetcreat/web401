@@ -34,11 +34,15 @@ export default function MonEspace() {
         navigate("/ajoutanimal");
     };
 
+    const NavigateModif = (idAnimal) => {
+        navigate("/modifieranimal/" + idAnimal);
+    };
+
     return (
         <div style={{ marginRight: '100px', marginLeft: '100px' }}>
             <p>Info User</p>
             <p style={{ fontSize: '22px', fontWeight: '500' }}>Mes Animaux</p>
-            <ListAnimauxUser></ListAnimauxUser>
+            <ListAnimauxUser NavigateModif={NavigateModif}></ListAnimauxUser>
             <div style={{ textAlign: 'center', marginTop: '50px' }}>
                     <Fab size="medium" onClick={NavigateAjout} style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
                         <AddIcon />
