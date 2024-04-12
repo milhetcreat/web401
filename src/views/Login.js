@@ -26,8 +26,6 @@ import { checkAuthentication } from '../auth';
 
 export default function Login() {
 
-    const navigate = useNavigate();
-
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);

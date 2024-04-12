@@ -51,6 +51,41 @@ function NavBar({ isAuthenticated }) {
 
     );
 
+    const handleLogout = ({ isAuthenticated }) => {
+        if (!isAuthenticated) {
+            // Si l'utilisateur n'est pas authentifié, pas besoin de déconnexion
+            console.log('pb');
+            return;
+        }
+
+        // Récupérer l'accessToken du localStorage
+        const accessToken = localStorage.getItem('accessToken');
+
+        // Effectuer une requête de déconnexion avec l'accessToken
+        fetch('https://milhet.alwaysdata.net/sae401/api/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Envoyer l'accessToken dans le corps de la requête
+                Authorization: `Bearer ${accessToken}`, // Ajoutez cette ligne si votre API nécessite un jeton d'authentification
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Vider le localStorage
+                    localStorage.removeItem('accessToken');
+                    localStorage.removeItem('user_id');
+                    // Rediriger l'utilisateur vers la page de connexion
+                    window.location.href = '/';
+                } else {
+                    console.error('Erreur lors de la déconnexion :', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la déconnexion :', error);
+            });
+    };
+
     return (
         <div>
             <AppBar position="static" style={{ backgroundColor: 'var(--all-stroke)' }}>
@@ -87,7 +122,7 @@ function NavBar({ isAuthenticated }) {
                         {isAuthenticated ? (
                             <>
                                 <MenuItem onClick={handleMenuClose}><Link className='Link' to="/account" style={{ textDecoration: 'none', color: 'black' }}>Mon Espace</Link></MenuItem>
-                                <MenuItem onClick={handleMenuClose}>Se déconnecter</MenuItem>
+                                <MenuItem onClick={() => handleLogout({ isAuthenticated })}>Se déconnecter</MenuItem>
                             </>
                         ) : (
                             <>
