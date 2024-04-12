@@ -11,11 +11,15 @@ import Login from './views/Login';
 import MonEspace from './views/MonEspace';
 import Messages from './views/Messages';
 import ModifierAnimal from './views/MofifierAnimal'
+import { checkAuthentication } from './auth';
 
 const App = () => {
+  
+  const isAuthenticated = checkAuthentication();
+
   return (
     <Router>
-      <Menu></Menu>
+      <Menu isAuthenticated={isAuthenticated}></Menu>
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />

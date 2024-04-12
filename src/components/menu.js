@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Routes, Link, Switch } from 'react-rout
 import { Padding } from '@mui/icons-material';
 import MessageIcon from '@mui/icons-material/Message';
 
-function App() {
+function NavBar({ isAuthenticated }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
 
@@ -39,10 +39,12 @@ function App() {
                         <HomeIcon></HomeIcon>
                         <span>Home</span>
                     </Link>
-                    <Link className='Link' to="/messages" style={{ color: 'black', display: 'flex', gap: '4px', textDecoration: 'none' }}>
-                        <MessageIcon></MessageIcon>
-                        <span>Messages</span>
-                    </Link>
+                    {isAuthenticated && (
+                        <Link className='Link' to="/messages" style={{ color: 'black', display: 'flex', gap: '4px', textDecoration: 'none' }}>
+                            <MessageIcon></MessageIcon>
+                            <span>Messages</span>
+                        </Link>
+                    )}
                 </nav>
             </ListItem>
         </div>
@@ -68,7 +70,8 @@ function App() {
                     <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenuOpen} color="inherit">
                         <AccountCircle />
                     </IconButton>
-                    <Menu id="menu-appbar" anchorEl={anchorEl}
+                    <Menu
+                        id="menu-appbar"
                         anchorOrigin={{
                             vertical: 'top',
                             horizontal: 'right',
@@ -81,10 +84,17 @@ function App() {
                         open={Boolean(anchorEl)}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/login" style={{ textDecoration: 'none', color: 'black' }}>Se Connecter</Link></MenuItem>
-                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/signup" style={{ textDecoration: 'none', color: 'black' }}>S'inscrire</Link></MenuItem>
-                        <MenuItem onClick={handleMenuClose}><Link className='Link' to="/account" style={{ textDecoration: 'none', color: 'black' }}>Mon Espace</Link></MenuItem>
-                        <MenuItem onClick={handleMenuClose}>Se déconnecter</MenuItem>
+                        {isAuthenticated ? (
+                            <>
+                                <MenuItem onClick={handleMenuClose}><Link className='Link' to="/account" style={{ textDecoration: 'none', color: 'black' }}>Mon Espace</Link></MenuItem>
+                                <MenuItem onClick={handleMenuClose}>Se déconnecter</MenuItem>
+                            </>
+                        ) : (
+                            <>
+                                <MenuItem onClick={handleMenuClose}><Link className='Link' to="/login" style={{ textDecoration: 'none', color: 'black' }}>Se Connecter</Link></MenuItem>
+                                <MenuItem onClick={handleMenuClose}><Link className='Link' to="/signup" style={{ textDecoration: 'none', color: 'black' }}>S'inscrire</Link></MenuItem>
+                            </>
+                        )}
                     </Menu>
                 </Toolbar>
             </AppBar>
@@ -95,4 +105,4 @@ function App() {
     );
 }
 
-export default App;
+export default NavBar;

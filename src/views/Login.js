@@ -22,8 +22,11 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Typography, Link } from '@mui/material';
+import { checkAuthentication } from '../auth';
 
 export default function Login() {
+
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -38,9 +41,10 @@ export default function Login() {
     //const navigate = useNavigate();
 
     const handleLogin = async (event) => {
+        event.preventDefault();
+
         const headers = new Headers();
         headers.append("Content-Type", "application/json")
-        event.preventDefault();
         const login = {
             email: email,
             password: password,
@@ -52,24 +56,28 @@ export default function Login() {
             body: JSON.stringify(login)
         };
         fetch('https://milhet.alwaysdata.net/sae401/api/login', fetchOptions)
-            .then((response) => {
-                response.json().then((value) => {
-                    console.log(value);
-                    if (value && value.accessToken && value.user_id) {
-                        // Stockez les informations dans le local storage
-                        localStorage.setItem('accessToken', value.accessToken);
-                        localStorage.setItem('user_id', value.user_id);
-                        console.log('Informations stockées dans le local storage :', value);
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.accessToken && data.user_id) {
+                    // Stocker les informations dans le local storage
+                    localStorage.setItem('accessToken', data.accessToken);
+                    localStorage.setItem('user_id', data.user_id);
+
+                    // Vérifier l'authentification avant de rediriger
+                    const authenticated = checkAuthentication();
+                    if (authenticated) {
+                        // Utilisateur authentifié, rediriger vers la page d'accueil
+                        window.location.href = "/";
                     } else {
-                        console.error('Les données reçues ne contiennent pas les informations attendues :', value);
+                        // Utilisateur non authentifié, afficher un message d'erreur ou effectuer une action appropriée
+                        console.error("Utilisateur non authentifié.");
                     }
-                })
-            })
-            .then((dataJSON) => {
-                console.log(dataJSON);
+                } else {
+                    console.error("Les données reçues ne contiennent pas les informations attendues :", data);
+                }
             })
             .catch((error) => {
-                console.error("Erreur lors de la requête:", error);
+                console.error("Erreur lors de la requête :", error);
             });
 
     }
