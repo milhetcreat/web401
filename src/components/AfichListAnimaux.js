@@ -20,6 +20,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { AlignHorizontalCenter } from "@mui/icons-material";
 import Fab from '@mui/material/Fab';
+import '../colors.css';
 
 export default function AffichListAnimaux(props) {
     let idType = props.idType;
@@ -57,7 +58,7 @@ export default function AffichListAnimaux(props) {
                                 animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
                             }
                             action={
-                                <Fab size="small" color="primary" aria-label="like">
+                                <Fab size="small" aria-label="like" style={{ backgroundColor: "var(--all-stroke)", color: 'white' }}>
                                     <FavoriteIcon />
                                 </Fab>
                             }

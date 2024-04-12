@@ -56,7 +56,7 @@ export default function AffichListAnimaux() {
                                 animal.GENRE === 0 ? <MaleIcon /> : <FemaleIcon />
                             }
                             action={
-                                <Fab size="small" color="primary" aria-label="like">
+                                <Fab size="small" aria-label="like" style={{ backgroundColor: "var(--all-stroke)", color: 'white' }}>
                                     <FavoriteIcon />
                                 </Fab>
                             }
