@@ -36,12 +36,14 @@ const AjoutAnimal = () => {
         document.getElementById("fichier").click();
     };
 
+    const idUser = localStorage.getItem('user_id');
+
     let myHeaders = new Headers();
     //myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append("ID_UTILISATEUR", 1);
+        formData.append("ID_UTILISATEUR", idUser);
         formData.append("ID_TYPE", type);
         formData.append("PRENOM", prenom);
         formData.append("AGE", age);
@@ -65,6 +67,7 @@ const AjoutAnimal = () => {
             })
             .then((dataJSON) => {
                 console.log(dataJSON)
+                window.location.href = "/account";
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête:", error);
