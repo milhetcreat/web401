@@ -11,7 +11,7 @@ import Login from './views/Login';
 import MonEspace from './views/MonEspace';
 import Messages from './views/Messages';
 import ModifierAnimal from './views/MofifierAnimal';
-import ModifierUser from './views/MofifierAnimal';
+import ModifierUser from './views/ModifierUser';
 import { checkAuthentication } from './auth';
 
 const App = () => {
