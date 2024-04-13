@@ -34,20 +34,29 @@ export default function MonEspace() {
         navigate("/ajoutanimal");
     };
 
-    const NavigateModif = (idAnimal) => {
+    const NavigateModifAnimal = (idAnimal) => {
         navigate("/modifieranimal/" + idAnimal);
     };
 
+    const NavigateModifUser = (idUser) => {
+        navigate("/modifieruser/" + idUser);
+    };
+
     return (
-        <div style={{ marginRight: '100px', marginLeft: '100px' }}>
-            <p>Info User</p>
-            <InfoUser></InfoUser>
+        <div style={{ marginRight: '80px', marginLeft: '80px' }}>
+            <Breadcrumbs aria-label="breadcrumb" style={{  marginTop: '20px', marginBottom: '20px' }}>
+                <Link underline="hover" color="inherit" href="/">
+                    Home
+                </Link>
+                <Typography color="text.primary">Mon Espace</Typography>
+            </Breadcrumbs>
+            <InfoUser isAuthenticated={true} NavigateModifUser={NavigateModifUser}></InfoUser>
             <p style={{ fontSize: '22px', fontWeight: '500' }}>Mes Animaux</p>
-            <ListAnimauxUser NavigateModif={NavigateModif}></ListAnimauxUser>
-            <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                    <Fab size="medium" onClick={NavigateAjout} style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
-                        <AddIcon />
-                    </Fab>
+            <ListAnimauxUser NavigateModifAnimal={NavigateModifAnimal}></ListAnimauxUser>
+            <div style={{ textAlign: 'center', marginTop: '50px', marginBottom: '50px' }}>
+                <Fab size="medium" onClick={NavigateAjout} style={{ backgroundColor: 'var(--all-stroke)', color: 'white' }}>
+                    <AddIcon />
+                </Fab>
             </div>
         </div>
     );

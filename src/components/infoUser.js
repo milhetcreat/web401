@@ -20,21 +20,30 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PetsIcon from '@mui/icons-material/Pets';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ReportIcon from '@mui/icons-material/Report';
+import Card from '@mui/material/Card';
+import EditIcon from '@mui/icons-material/Edit';
+import EmailIcon from '@mui/icons-material/Email';
+import CallIcon from '@mui/icons-material/Call';
+import Box from '@mui/material/Box';
 import '../colors.css';
 
-export default function InfoUser() {
-    //const { idUser } = useParams();
-    const idUser = 1;
+export default function InfoUser({ NavigateModifUser }) {
+
     const [user, setUser] = useState(null);
 
-    //const idUser = localStorage.getItem('user_id');
+    const idUser = localStorage.getItem('user_id');
     const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
         const fetchInfoUser = () => {
-            fetch(
-                `https://milhet.alwaysdata.net/sae401/api/utilisateurs/${idUser}`   
-            )
+            fetch(`https://milhet.alwaysdata.net/sae401/api/utilisateurs/${idUser}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Envoyer l'accessToken dans le corps de la requête
+                    Authorization: `Bearer ${token}`,
+                },
+            })
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -56,52 +65,44 @@ export default function InfoUser() {
         <div>
             {user && (
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Breadcrumbs aria-label="breadcrumb" style={{ marginLeft: '250px', marginTop: '20px', marginBottom: '20px' }}>
-                        <Link underline="hover" color="inherit" href="/">
-                            Home
-                        </Link>
-                        <Typography color="text.primary">Mon Espace</Typography>
-                    </Breadcrumbs>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginLeft: '250px', marginRight: '250px' }}>
-                        <h3 className="prenom" style={{ fontSize: '65px', marginBottom: '5px', marginTop: '0px', color: 'var(--dog-stroke)' }}>{user.PRENOM}</h3>
+                    <div style={{ backgroundColor: 'var(--bg-user)', display: 'flex', gap: '100px', alignItems: 'center', justifyContent: 'center' }}>
                         <div>
-                            <Fab size="small" aria-label="like" style={{ marginRight: '5px', backgroundColor: 'var(--dog-stroke)', color: 'white' }}>
-                                <FavoriteIcon />
-                            </Fab>
-                            <Fab size="small" aria-label="like" style={{ backgroundColor: 'var(--dog-stroke)', color: 'white' }}>
-                                <ReportIcon />
-                            </Fab>
-                        </div>
-                    </div>
-                    <div style={{ backgroundColor: 'var(--bg-user)', display: 'flex', gap: '150px', padding: '50px', justifyContent: 'center', alignItems: 'center' }}>
-                        <div>
-                            <img
-                                width="400px"
-                                src={"https://milhet.alwaysdata.net/sae401/images/" + user.pdp}
+                            <Avatar
+                                style={{ width: '200px', height: '200px', objectFit: 'cover' }}
                                 alt={user.prenom}
+                                src={"https://milhet.alwaysdata.net/sae401/images/" + user.pdp}
                             />
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><PetsIcon></PetsIcon> {user.RACE}</p>
-                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{user.genre === 0 ? (<> <MaleIcon /> Mâle </>) : (<>  <FemaleIcon /> Femelle </>)}</p>
-                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}> <DateRangeIcon></DateRangeIcon> {user.AGE} {user.AGE === 1 ? 'an' : 'ans'}</p>
-                            <p style={{ display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 'bold' }}><LocationOnIcon></LocationOnIcon> {user.LOCALISATION}</p>
+                        <div>
+                            <p style={{ fontSize: '22px', fontWeight: '500' }}>Informations personnelles</p>
+                            <Card key={user.ID_user} variant="outlined" sx={{ minWidth: 800 }} >
+                                <Box sx={{ p: 2 }}>
+                                    <Stack direction="row" justifyContent="space-between" gap="20px" alignItems="center">
+                                        <Stack direction="column" style={{marginLeft: '20px'}}>
+                                            <Typography gutterBottom variant="h6" component="div" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize:'25px' }}>
+                                                {`${user.prenom} `}
+                                                {user.name}
+                                            </Typography>
+                                            <Typography gutterBottom variant="h6" component="div" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'grey', fontSize: '16px' }}>
+                                                <LocationOnIcon></LocationOnIcon>
+                                                {user.localisation}
+                                            </Typography>
+                                            <Typography gutterBottom variant="h6" component="div" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'grey', fontSize: '16px' }}>
+                                                <EmailIcon></EmailIcon>
+                                                {user.email}
+                                            </Typography>
+                                            <Typography gutterBottom variant="h6" component="div" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'grey', fontSize: '16px' }}>
+                                                <CallIcon></CallIcon>
+                                                {user.telephone}
+                                            </Typography>
+                                        </Stack>
+                                        <Fab onClick={() => NavigateModifUser(user.id)} size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white', marginRight: '50px' }}>
+                                            <EditIcon />
+                                        </Fab>
+                                    </Stack>
+                                </Box>
+                            </Card>
                         </div>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'start', marginLeft: '250px', marginRight: '250px', marginTop: '50px' }}>
-                        <div style={{ marginLeft: '250px', marginRight: '250px' }}>
-                            <p>{user.DESCRIPTION}</p>
-                            <p style={{ fontWeight: 'bold' }}> Spécificités</p>
-                            <p>{user.SPECIFICITE === null ? 'Aucunes' : user.SPECIFICITE}</p>
-                        </div>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <ImageIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Photos" secondary={user.PRENOM}/>
-                        </ListItem>
                     </div>
                 </div>
             )}

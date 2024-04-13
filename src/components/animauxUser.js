@@ -29,7 +29,7 @@ import NbLike from "./nbLike";
 import { useNavigate } from "react-router-dom";
 import '../colors.css';
 
-export default function ListAnimauxUser({ NavigateModif }) {
+export default function ListAnimauxUser({ NavigateModifAnimal }) {
     
     const idUser = localStorage.getItem('user_id');
     const url = `https://milhet.alwaysdata.net/sae401/api/animaux/${idUser}/users`;
@@ -78,7 +78,7 @@ export default function ListAnimauxUser({ NavigateModif }) {
                                         <NbLike critere={animal.ID_ANIMAL}></NbLike>
                                     </div>
                                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px'}}>
-                                        <Fab onClick={() => NavigateModif(animal.ID_ANIMAL)} size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white' }}>
+                                        <Fab onClick={() => NavigateModifAnimal(animal.ID_ANIMAL)} size="tall" style={{ backgroundColor: 'var(--all-fill)', color: 'white' }}>
                                             <EditIcon />
                                         </Fab>
                                         <Typography>Edit</Typography>

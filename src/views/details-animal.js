@@ -92,13 +92,7 @@ export default function DetailAnimal() {
                         </div>
                         <ListItem>
                             <ListItemAvatar>
-                                <Avatar>
-                                    <img
-                                        width="40px"
-                                        src={"https://milhet.alwaysdata.net/sae401/images/" + animal.user.pdp}
-                                        alt={animal.user.prenom}
-                                    />
-                                </Avatar>
+                                <Avatar alt={animal.user.prenom} src={"https://milhet.alwaysdata.net/sae401/images/" + animal.user.pdp} />
                             </ListItemAvatar>
                             <ListItemText primary={`${animal.user.prenom} ${animal.user.name}`} secondary="Propriétaire de l'animal" />
                             Contacter*

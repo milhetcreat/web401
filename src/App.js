@@ -10,7 +10,8 @@ import Signup from './views/Signup';
 import Login from './views/Login';
 import MonEspace from './views/MonEspace';
 import Messages from './views/Messages';
-import ModifierAnimal from './views/MofifierAnimal'
+import ModifierAnimal from './views/MofifierAnimal';
+import ModifierUser from './views/MofifierAnimal';
 import { checkAuthentication } from './auth';
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/details/:idAnimal" element={<DetailAnimal />} />
           <Route path="/ajoutanimal" element={<AjoutAnimal />} />
           <Route path="/modifieranimal/:idAnimal" element={<ModifierAnimal />} />
+          <Route path="/modifieruser/:idUser" element={<ModifierUser />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<MonEspace />} />
