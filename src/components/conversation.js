@@ -22,7 +22,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ReportIcon from '@mui/icons-material/Report';
 import '../colors.css';
 
-export default function Messages() {
+export default function conversation() {
     const { idMessage } = useParams();
     const [message, setMessage] = useState(null);
 

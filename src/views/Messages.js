@@ -19,71 +19,10 @@ import '../colors.css';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
+import ListeMessages from "../components/ListMessages";
 import Stack from '@mui/material/Stack';
 
-export default function MonEspace() {
-    //const { idUser } = useParams();
-    //const idUser = 1;
-    const [user, setUser] = useState(null);
-
-    //const idUser = localStorage.getItem('user_id');
-    const idUser = 1;
-    const token = localStorage.getItem('accessToken');
-
-    //let url = `https://milhet.alwaysdata.net/sae401/api/conversations?idutilisateur=${idUser}`
-    let url = `https://milhet.alwaysdata.net/sae401/api/conversations?idutilisateur=3`
-    const [listeMessages, setMessages] = useState([]);
-
-    useEffect(() => {
-        const fetchMessages = () => {
-            const fetchOptions = { method: "GET" };
-            fetch(url, fetchOptions)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((dataJSON) => {
-                    console.log(dataJSON);
-                    setMessages(dataJSON);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        };
-
-        fetchMessages();
-
-    }, [url]);
-
-    const conversations = listeMessages.reduce((acc, message) => {
-        if (!acc[message.ID_CONVERSATION]) {
-            acc[message.ID_CONVERSATION] = message;
-        }
-        return acc;
-    }, {});
-
-    const conversationCards = Object.values(conversations).map((message) => (
-        <Link key={message.ID_message} to={"/details/" + message.ID_message} style={{ textDecoration: 'none', margin: '20px' }}>
-            <Card variant="outlined" sx={{ maxWidth: 360 }}>
-                <Box sx={{ p: 2 }}>
-                    <Stack direction="row" justifyContent="space-around" alignItems="center" gap="20px">
-                        <img
-                            width="100px"
-                            src={"https://milhet.alwaysdata.net/sae401/images/" + message.animal.PHOTO}
-                            alt={message.animal.PRENOM}
-                        />
-                        <Stack direction="column" justifyContent="space-between" alignItems="start">
-                            <Typography gutterBottom variant="h6" component="div">
-                                {`${message.user.prenom} ${message.user.name}`}
-                            </Typography>
-                            <Typography gutterBottom variant="h6" component="div">
-                                {`${message.animal.PRENOM}, ${message.animal.RACE}`}
-                            </Typography>
-                        </Stack>
-                    </Stack>
-                </Box>
-            </Card>
-        </Link>
-    ));
+export default function Messages() {
 
     return (
         <div style={{ display: 'flex', gap: '20px', justifyContent: 'space-between' }}>
@@ -91,9 +30,7 @@ export default function MonEspace() {
                 <Typography gutterBottom variant="h1" component="div" style={{ fontSize: '25px', fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>
                     Tous les messages
                 </Typography>
-                <div>
-                    {conversationCards}
-                </div>
+                <ListeMessages isAuthenticated={true}></ListeMessages>
             </div>
             <div>
                 toto
