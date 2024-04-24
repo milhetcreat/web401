@@ -1,5 +1,5 @@
 import '../colors.css';
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -61,7 +61,7 @@ const ModifierAnimal = (props) => {
             headers: myHeaders,
             body: formData
         };
-        fetch(`https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}` , fetchOptions)
+        fetch(`https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}`, fetchOptions)
             .then((response) => {
                 response.json().then((value) => {
                     console.log(value);
@@ -74,6 +74,39 @@ const ModifierAnimal = (props) => {
                 console.error("Erreur lors de la requête:", error);
             });
     };
+
+    const [animal, setAnimal] = useState(null);
+
+    useEffect(() => {
+        const fetchAnimalDetails = () => {
+            fetch(
+                `https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}`
+            )
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setAnimal(data);
+                    // Mettre à jour les états des champs de saisie avec les valeurs récupérées
+                    setType(data.ID_TYPE);
+                    setPrenom(data.PRENOM);
+                    setRace(data.RACE);
+                    setAge(data.AGE);
+                    setDescription(data.DESCRIPTION);
+                    setSpecificite(data.SPECIFICITE);
+                    setGenre(data.GENRE);
+                    setLocalisation(data.LOCALISATION);
+                })
+                .catch((error) => {
+                    console.error("Error fetching animal details:", error);
+                });
+        };
+
+        fetchAnimalDetails();
+    }, [idAnimal]);
 
 
     return (

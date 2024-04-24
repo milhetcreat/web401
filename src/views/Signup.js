@@ -51,7 +51,7 @@ export default function Signup() {
     };
 
     let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "multipart/form-data")
+    //myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -79,7 +79,8 @@ export default function Signup() {
                 })
             })
             .then((dataJSON) => {
-                console.log(dataJSON)
+                console.log(dataJSON);
+                window.location.href = "/login";
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête:", error);
