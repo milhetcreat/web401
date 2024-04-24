@@ -86,6 +86,47 @@ export default function ModifierUser() {
             });
     };
 
+    const [user, setUser] = useState(null);
+
+    const idUser = localStorage.getItem('user_id');
+    const token = localStorage.getItem('accessToken');
+
+    useEffect(() => {
+        const fetchInfoUser = () => {
+            fetch(`https://milhet.alwaysdata.net/sae401/api/utilisateurs/${idUser}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Envoyer l'accessToken dans le corps de la requête
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setUser(data);
+
+                    setName(data.name);
+                    setPrenom(data.prenom);
+                    setLocalisation(data.localisation);
+                    setEmail(data.email);
+                    setTelephone(data.telephone);
+                    setPassword(data.password);
+                    setPdp(data.pdp);
+                    setGenre(data.genre);
+                })
+                .catch((error) => {
+                    console.error("Error fetching user infos:", error);
+                });
+        };
+
+        fetchInfoUser();
+    }, [idUser]);
+
 
     return (
         <div >

@@ -90,13 +90,14 @@ const ModifierAnimal = (props) => {
                 })
                 .then((data) => {
                     setAnimal(data);
-                    // Mettre à jour les états des champs de saisie avec les valeurs récupérées
+                    
                     setType(data.ID_TYPE);
                     setPrenom(data.PRENOM);
                     setRace(data.RACE);
                     setAge(data.AGE);
                     setDescription(data.DESCRIPTION);
                     setSpecificite(data.SPECIFICITE);
+                    setPhoto(data.PHOTO);
                     setGenre(data.GENRE);
                     setLocalisation(data.LOCALISATION);
                 })
