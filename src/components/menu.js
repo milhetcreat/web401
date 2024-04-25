@@ -5,10 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { BrowserRouter as Router, Route, Routes, Link, Switch } from 'react-router-dom';
-import { Padding } from '@mui/icons-material';
 import MessageIcon from '@mui/icons-material/Message';
 
 function NavBar({ isAuthenticated }) {

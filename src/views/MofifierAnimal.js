@@ -18,6 +18,8 @@ import Link from '@mui/material/Link';
 
 const ModifierAnimal = (props) => {
 
+    const idUser = localStorage.getItem('user_id');
+
     const fileInputRef = useRef(null);
 
     const [type, setType] = useState(null);
@@ -40,12 +42,45 @@ const ModifierAnimal = (props) => {
 
     const { idAnimal } = useParams();
 
+    useEffect(() => {
+        const fetchAnimalDetails = () => {
+            fetch(
+                `https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}`
+            )
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setAnimal(data);
+
+                    setType(data.ID_TYPE);
+                    setPrenom(data.PRENOM);
+                    setRace(data.RACE);
+                    setAge(data.AGE);
+                    setDescription(data.DESCRIPTION);
+                    setSpecificite(data.SPECIFICITE);
+                    setPhoto(data.PHOTO);
+                    setGenre(data.GENRE);
+                    setLocalisation(data.LOCALISATION);
+                })
+                .catch((error) => {
+                    console.error("Error fetching animal details:", error);
+                });
+        };
+
+        fetchAnimalDetails();
+    }, [idAnimal]);
+
     let myHeaders = new Headers();
     //myHeaders.append("Content-Type", "multipart/form-data")
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append("ID_UTILISATEUR", 1);
+        formData.append("ID_UTILISATEUR", idUser);
+        formData.append("ID_ANIMAL", idAnimal);
         formData.append("ID_TYPE", type);
         formData.append("PRENOM", prenom);
         formData.append("AGE", age);
@@ -64,11 +99,11 @@ const ModifierAnimal = (props) => {
         fetch(`https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}`, fetchOptions)
             .then((response) => {
                 response.json().then((value) => {
-                    console.log(value);
+                    //console.log(value);
                 })
             })
             .then((dataJSON) => {
-                console.log(dataJSON)
+                console.log(dataJSON);
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête:", error);
@@ -76,38 +111,6 @@ const ModifierAnimal = (props) => {
     };
 
     const [animal, setAnimal] = useState(null);
-
-    useEffect(() => {
-        const fetchAnimalDetails = () => {
-            fetch(
-                `https://milhet.alwaysdata.net/sae401/api/animaux/${idAnimal}`
-            )
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    setAnimal(data);
-                    
-                    setType(data.ID_TYPE);
-                    setPrenom(data.PRENOM);
-                    setRace(data.RACE);
-                    setAge(data.AGE);
-                    setDescription(data.DESCRIPTION);
-                    setSpecificite(data.SPECIFICITE);
-                    setPhoto(data.PHOTO);
-                    setGenre(data.GENRE);
-                    setLocalisation(data.LOCALISATION);
-                })
-                .catch((error) => {
-                    console.error("Error fetching animal details:", error);
-                });
-        };
-
-        fetchAnimalDetails();
-    }, [idAnimal]);
 
 
     return (
